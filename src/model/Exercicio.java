@@ -25,6 +25,7 @@ public class Exercicio {
 		this.itensidade=itensidade;
 	}
 
+	//Criar um método na classe Instrutor que permita ele fazer alterações nos exercicios de um treino caso deseje (usando get e set)
 	public String getNome() {
 		return nome;
 	}

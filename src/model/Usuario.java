@@ -37,11 +37,11 @@ public class Usuario {
 		this.matricula = matricula;
 	}
    
-	public void exibirInformacoes() { // apagar depois, vai estar em view
+	public void exibirInformacoes() {
 		System.out.println("Nome: " + this.getNome() + "Idade: " + this.getIdade() + " " + this.getMatricula());
 	}
 	
-	public boolean autenticarAcesso(String matricula) { // Polimorfismo para instrutor com matricula e senha  
+	public boolean autenticarAcesso(String matricula) {
 		if(matricula.equals(this.getMatricula())) {
 			return true;
 		}else {

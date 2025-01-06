@@ -1,5 +1,10 @@
-package model;
+package view;
 import javax.swing.*;
+
+import model.Aluno;
+import model.Exercicio;
+import model.Treinos;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -103,10 +108,13 @@ public class IFitnessApp extends JFrame {
         add(new JLabel("Aluno:"));
         add(alunoParaListarField);
         add(listarTreinosBtn);
+        
 
         add(new JScrollPane(outputArea));
 
         // Ações dos botões
+        
+        
         cadastrarAlunoBtn.addActionListener(e -> {
             String matricula = matriculaField.getText();
             String nome = nomeField.getText();
@@ -116,6 +124,7 @@ public class IFitnessApp extends JFrame {
             double peso = Double.parseDouble(pesoField.getText());
             double altura = Double.parseDouble(alturaField.getText());
             alunos.add(new Aluno(nome, idade, matricula,sexo,peso,altura,limitacoesFisicasOuSaude));
+            
             outputArea.append("Aluno " + nome + " cadastrado com sucesso!\n");
         });
 

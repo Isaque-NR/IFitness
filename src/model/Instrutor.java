@@ -22,11 +22,11 @@ public class Instrutor extends Usuario{
 		this.senha = senha;
 	}
 	
-	public List<Aluno> getAlunos() { // na iterface visual listar alunos chama esse get
+	public List<Aluno> getAlunos() { //falta testar esse, é usado para retornar uma consulta de todos os alunos (só o nome) associados a um instrutor
 		return alunos;
 	}
     
-	public void cadastrarAluno(Aluno aluno) {
+	public void cadastrarAluno(Aluno aluno) { 
 		alunos.add(aluno);
 	}
 	
@@ -38,13 +38,23 @@ public class Instrutor extends Usuario{
 		aluno.getTreinos().remove(treino);
 	}
 	
-	public Aluno consultarAluno(String matricula) {
+	public Aluno consultarAluno(String matricula) { //metodo que vai retornar a busca de um aluno especifico (o objeto como um todo)
 		for(Aluno aluno : alunos) {
 			if(aluno.getMatricula().equals(matricula)) {
 				return aluno;
 			}
 		}
 		return null;
+	}
+	
+	public boolean autenticarAcesso(String matricula, String senha) {
+		if (matricula.equals(this.getMatricula()) && senha.equals(getSenha())) return true;
+		else return false;
+	}
+	
+	@Override
+	public void exibirInformacoes() {
+		System.out.println("Nome: " + this.getNome() + " Idade: " + this.getIdade() + " Matrícula: " + this.getMatricula() + " Lista de aluno: " + getAlunos());
 	}
 	
 }

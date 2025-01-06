@@ -54,16 +54,18 @@ public class Aluno extends Usuario{
 		this.limitacoesFisicasOuSaude = limitacoesFisicasOuSaude;
 	}
 
-	public List<Treinos> getTreinos() { // mesmo caso listar alunos
+	public List<Treinos> getTreinos() {
 		return treinos;
-	}
-
-	public void setTreinos(List<Treinos> treinos) {
-		this.treinos = treinos;
 	}
 	
 	public double calcularIMC() {
 		return peso/(altura*altura);
+	}
+	
+	@Override
+	public void exibirInformacoes() {
+		System.out.println("Nome: " + this.getNome() + " Idade: " + this.getIdade() + " Matrícula: " + this.getMatricula()
+		+ " Sexo: " + sexo + " Peso: " + peso + " Limitações físicas ou de saúde: " + limitacoesFisicasOuSaude);
 	}
 
 	@Override
