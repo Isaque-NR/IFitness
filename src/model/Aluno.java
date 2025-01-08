@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.ArrayList;
+import controller.Validadores;
 
 public class Aluno extends Usuario{
 	
@@ -14,12 +15,15 @@ public class Aluno extends Usuario{
 	public Aluno(String nome, int idade, String matricula, String sexo, double peso, double altura,
 	String limitacoesFisicasOuSaude){
 		super(nome,idade,matricula);
+		if(Validadores.isAlunoValid(sexo,peso,altura,limitacoesFisicasOuSaude)) {
 		this.sexo=sexo;
 		this.peso=peso;
 		this.altura=altura;
 		this.limitacoesFisicasOuSaude = limitacoesFisicasOuSaude;
 		this.treinos=new ArrayList<>();
-		
+		}else {
+			System.out.println("Aluno Invalido");
+		}
 	}
 
 	public String getSexo() {
@@ -27,7 +31,12 @@ public class Aluno extends Usuario{
 	}
 
 	public void setSexo(String sexo) {
-		this.sexo = sexo;
+		if(Validadores.isSexoValid(sexo)) {
+		    this.sexo = sexo;
+		}else {
+			System.out.println("Insira um Sexo válido!");
+		}
+		
 	}
 
 	public double getPeso() {
@@ -35,7 +44,12 @@ public class Aluno extends Usuario{
 	}
 
 	public void setPeso(double peso) {
-		this.peso = peso;
+		if(Validadores.isPesoValid(peso)) {
+			this.peso = peso;	
+		}else {
+			System.out.println("Insira um Peso Válido!");
+		}
+		
 	}
 
 	public double getAltura() {
@@ -43,7 +57,11 @@ public class Aluno extends Usuario{
 	}
 
 	public void setAltura(double altura) {
-		this.altura = altura;
+		if(Validadores.isAlturaValid(altura)) {
+			this.altura = altura;
+		}else {
+			System.out.println("insira uma altura válida!");
+		}
 	}
 
 	public String getLimitacoesFisicasOuSaude() {
@@ -51,7 +69,11 @@ public class Aluno extends Usuario{
 	}
 
 	public void setLimitacoesFisicasOuSaude(String limitacoesFisicasOuSaude) {
-		this.limitacoesFisicasOuSaude = limitacoesFisicasOuSaude;
+		if(Validadores.isLimitacoesValid(limitacoesFisicasOuSaude)){
+			this.limitacoesFisicasOuSaude = limitacoesFisicasOuSaude;
+		}else {
+			System.out.println("insira Limitações Válidas!");
+		}
 	}
 
 	public List<Treinos> getTreinos() {

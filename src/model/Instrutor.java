@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.ArrayList;
+import controller.Validadores;
 
 public class Instrutor extends Usuario{
 	
@@ -10,8 +11,12 @@ public class Instrutor extends Usuario{
 	
 	public Instrutor(String nome, int idade, String matricula, String senha) {
 		super(nome,idade,matricula);
+		if(Validadores.isInstrutorValid(senha)) {
 		this.senha=senha;
 		this.alunos=new ArrayList<>();
+		}else {
+			System.out.println("Instrutor Invalido");
+		}
 	}
 
 	public String getSenha() {
@@ -19,7 +24,12 @@ public class Instrutor extends Usuario{
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		if(Validadores.isSenhaValid(senha)){
+			this.senha = senha;
+		}else {
+			System.out.println("Insira uma Senha Válida!");
+		}
+				
 	}
 	
 	public List<Aluno> getAlunos() { //falta testar esse, é usado para retornar uma consulta de todos os alunos (só o nome) associados a um instrutor
