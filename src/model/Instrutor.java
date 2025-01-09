@@ -11,7 +11,7 @@ public class Instrutor extends Usuario{
 	
 	public Instrutor(String nome, int idade, String matricula, String senha) {
 		super(nome,idade,matricula);
-		if(Validadores.isInstrutorValid(senha)) {
+		if(Validadores.isSenhaValid(senha)) {
 		this.senha=senha;
 		this.alunos=new ArrayList<>();
 		}else {
@@ -46,6 +46,10 @@ public class Instrutor extends Usuario{
 	
 	public void removerTreino(Aluno aluno, Treinos treino) {
 		aluno.getTreinos().remove(treino);
+	}
+	
+	public void atualizarTreino(Aluno aluno, Treinos treino) {
+		
 	}
 	
 	public Aluno consultarAluno(String matricula) { //metodo que vai retornar a busca de um aluno especifico (o objeto como um todo)

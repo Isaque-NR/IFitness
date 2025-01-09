@@ -25,7 +25,7 @@ public class Aluno extends Usuario{
 			System.out.println("Aluno Invalido");
 		}
 	}
-
+    
 	public String getSexo() {
 		return sexo;
 	}

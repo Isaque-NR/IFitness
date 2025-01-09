@@ -10,7 +10,6 @@ public class Usuario {
 	
 	public Usuario(String nome, int idade, String matricula) {
 		if(Validadores.isUsuarioValid(nome,idade,matricula)) {
-			
 			this.nome=nome;
 			this.idade=idade; 
 			this.matricula=matricula;

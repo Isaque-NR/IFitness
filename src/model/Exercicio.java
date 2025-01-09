@@ -53,7 +53,7 @@ public class Exercicio {
 	}
 
 	public void setCarga(double carga) {
-		if(Validadores.isDoubleValorValid(carga,0.2,1000)) {
+		if(carga>0 && carga<= 1000) {
 				this.carga = carga;
 		}else {
 			System.out.println("Insira uma carga Válida!");
@@ -65,7 +65,7 @@ public class Exercicio {
 	}
 
 	public void setRepeticoes(int repeticoes) {
-		if(Validadores.isIntValorValid(repeticoes,1,500)) {
+		if(repeticoes>=1 && repeticoes<=500) {
 				this.repeticoes = repeticoes;
 		}else {
 			System.out.println("Insira repeticoes Válidas!");
@@ -77,7 +77,7 @@ public class Exercicio {
 	}
 
 	public void setSeries(int series) {
-		if(Validadores.isIntValorValid(series,1,200)) {
+		if(series>=1 && series<=200) {
 				this.series = series;
 		}else {
 			System.out.println("Insira series Válidas!");
@@ -89,7 +89,7 @@ public class Exercicio {
 	}
 
 	public void setDuracao(int duracao) {
-		if(Validadores.isIntValorValid(duracao,1,240)) {
+		if(duracao>=1 && duracao <=240) {
 				this.duracao = duracao;
 		}else{
 			System.out.println("Insira uma duração válida!");

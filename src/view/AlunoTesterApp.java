@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 
+import controller.Validadores;
 import model.Aluno;
 import model.Exercicio;
 import model.Treinos;
@@ -121,4 +122,5 @@ public class AlunoTesterApp extends JFrame {
     public static void main(String[] args) {
         new AlunoTesterApp();
     }
+
 }

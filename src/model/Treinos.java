@@ -10,7 +10,7 @@ public class Treinos {
 	private List<Exercicio> exercicios;
 	
 	public Treinos(String descricao) {
-		if(Validadores.isTreinosValid(descricao)) {
+		if(Validadores.isDescricaoValid(descricao)) {
 		this.descricao=descricao;
 		this.exercicios=new ArrayList<>();
 		}else {
