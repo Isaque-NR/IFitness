@@ -2,7 +2,6 @@ package model;
 
 import java.util.List;
 import java.util.ArrayList;
-import controller.Validadores;
 
 public class Treinos {
 	
@@ -47,5 +46,4 @@ public class Treinos {
 		return "Descricao:" + descricao + ", exercicios: " + exercicios.toString();
 	}
 	
-
 }

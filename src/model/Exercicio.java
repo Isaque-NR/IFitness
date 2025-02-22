@@ -1,7 +1,5 @@
 package model;
 
-import controller.Validadores;
-
 public class Exercicio {
 	
 	private String nome;
@@ -9,7 +7,7 @@ public class Exercicio {
 	private int repeticoes;
 	private int series;
 	private int duracao; // min
-	private String itensidade; // leve,moderado,itenso
+	private String intensidade; // leve,moderado,itenso
 	
 	// Construtor Exercicos de Musculação
 	public Exercicio(String nome, double carga, int repeticoes, int series) {
@@ -18,8 +16,9 @@ public class Exercicio {
 		this.carga=carga;
 		this.repeticoes=repeticoes;
 		this.series=series;
+		this.intensidade = "N/A";
 		}else {
-			System.out.println("Exercicio não valido");
+			System.out.println("Exercicio Invalido");
 		}
 	}
 	
@@ -29,23 +28,19 @@ public class Exercicio {
 		if(Validadores.isExercicioCardioValid(nome, duracao, itensidade)) {
 		this.nome=nome;
 		this.duracao=duracao;
-		this.itensidade=itensidade;
+		this.intensidade=itensidade;
 		}else {
 			System.out.println("Exercicio Invalido");
 		}
 	}
 
-	//Criar um método na classe Instrutor que permita ele fazer alterações nos exercicios de um treino caso deseje (usando get e set)
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
-		if(Validadores.isNomeValid(nome)) {
 				this.nome = nome;
-		}else {
-			System.out.println("Insira um nome válido!");
-		}
+
 	}
 
 	public double getCarga() {
@@ -53,11 +48,7 @@ public class Exercicio {
 	}
 
 	public void setCarga(double carga) {
-		if(carga>0 && carga<= 1000) {
 				this.carga = carga;
-		}else {
-			System.out.println("Insira uma carga Válida!");
-		}
 	}
 
 	public int getRepeticoes() {
@@ -65,11 +56,7 @@ public class Exercicio {
 	}
 
 	public void setRepeticoes(int repeticoes) {
-		if(repeticoes>=1 && repeticoes<=500) {
 				this.repeticoes = repeticoes;
-		}else {
-			System.out.println("Insira repeticoes Válidas!");
-		}
 	}
 
 	public int getSeries() {
@@ -77,11 +64,7 @@ public class Exercicio {
 	}
 
 	public void setSeries(int series) {
-		if(series>=1 && series<=200) {
 				this.series = series;
-		}else {
-			System.out.println("Insira series Válidas!");
-		}
 	}
 
 	public int getDuracao() {
@@ -89,29 +72,21 @@ public class Exercicio {
 	}
 
 	public void setDuracao(int duracao) {
-		if(duracao>=1 && duracao <=240) {
 				this.duracao = duracao;
-		}else{
-			System.out.println("Insira uma duração válida!");
-		}
 	}
 
-	public String getItensidade() {
-		return itensidade;
+	public String getIntensidade() {
+		return intensidade;
 	}
 
-	public void setItensidade(String itensidade) {
-		if(Validadores.isItensidadeValid(itensidade)) {
-		this.itensidade = itensidade;
-		}else {
-			System.out.println("Insira uma itensidade Válida!");
-		}
+	public void setIntensidade(String itensidade) {
+		this.intensidade = itensidade;
 	}
 
 	@Override
 	public String toString() {
 		return  nome + ", carga: " + carga + ", repeticoes; " + repeticoes + ", series: " + series
-				+ ", duracao: " + duracao + ", itensidade: " + itensidade ;
+				+ ", duracao: " + duracao + ", itensidade: " + intensidade ;
 	}
 	
 }

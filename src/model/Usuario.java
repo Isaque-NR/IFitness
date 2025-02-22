@@ -1,7 +1,5 @@
 package model;
 
-import controller.Validadores;
-
 public class Usuario {
 	
 	private String nome;
@@ -9,7 +7,8 @@ public class Usuario {
 	private String matricula;
 	
 	public Usuario(String nome, int idade, String matricula) {
-		if(Validadores.isUsuarioValid(nome,idade,matricula)) {
+		if(Validadores.isNomeValid(nome) && Validadores.isIdadeValid(idade) 
+		   && Validadores.isMatriculaValid(matricula)) {
 			this.nome=nome;
 			this.idade=idade; 
 			this.matricula=matricula;
@@ -54,18 +53,10 @@ public class Usuario {
 			System.out.println("Insira uma matricula válida!");
 		}
 	}
-   
-	public void exibirInformacoes() {
-		System.out.println("Nome: " + this.getNome() + "Idade: " + this.getIdade() + " " + this.getMatricula());
-	}
 	
-	public boolean autenticarAcesso(String matricula) {
-		if(matricula.equals(this.getMatricula())) {
-			return true;
-		}else {
-			return false;
-		}
+	@Override
+	public String toString() {
+		return "Nome: " + nome + "| Idade: " + idade + "| Matricula: " + matricula;
 	}
-	
 	
 }
