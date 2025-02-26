@@ -35,16 +35,17 @@ public class TelaLogin extends JFrame {
 
     private JPanel criarPainelLogin() {
         JPanel painelLogin = new JPanel();
-        painelLogin.setBackground(Color.WHITE);
+        painelLogin.setBackground(new Color(0, 153, 0));
         painelLogin.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(18, 10, 15, 10);
+        gbc.insets = new Insets(12, 10, 12, 10);
         
         // Linha 0: Label IFitness
-        JLabel lblTitulo = new JLabel("IFitness");
+        JLabel lblTitulo = new JLabel("<HTML><U>IFitness</U></HTML>");
+        lblTitulo.setForeground(Color.BLACK);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 56));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 0;
@@ -53,62 +54,53 @@ public class TelaLogin extends JFrame {
         gbc.weighty = 0;
         painelLogin.add(lblTitulo, gbc);
 
-        // Linha 1: Label "Selecione o tipo de Usuário"
-        JLabel lblSelecioneTipo = new JLabel("Selecione o tipo de Usuário:");
-        lblSelecioneTipo.setFont(new Font("Arial", Font.PLAIN, 16));
-        lblSelecioneTipo.setHorizontalAlignment(SwingConstants.CENTER);
-        gbc.gridy = 1;
-        painelLogin.add(lblSelecioneTipo, gbc);
 
-        // Linha 2: Botões ALUNO e INSTRUTOR
-        gbc.gridwidth = 1;
-        gbc.gridy = 2;
-
-        JButton btnAluno = new JButton("ALUNO");
-        estilizarBotaoVerde(btnAluno);
-        gbc.gridx = 0;
-        painelLogin.add(btnAluno, gbc);
-
-        JButton btnInstrutor = new JButton("INSTRUTOR");
-        estilizarBotaoVerde(btnInstrutor);
-        gbc.gridx = 1;
-        painelLogin.add(btnInstrutor, gbc);
-
-        // Linha 3: Label Matrícula
+        // Linha 1
         JLabel lblMatricula = new JLabel("Matrícula:");
-        lblMatricula.setFont(new Font("Arial", Font.PLAIN, 16));
+        lblMatricula.setForeground(Color.BLACK);
+        lblMatricula.setFont(new Font("Arial", Font.BOLD, 16));
+       
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy++;
         gbc.gridwidth = 2;
         painelLogin.add(lblMatricula, gbc);
 
-        // Linha 4: Campo de texto para Matrícula
+        // Linha 2
         JTextField txtMatricula = new JTextField();
-        gbc.gridy = 4;
+        txtMatricula.setPreferredSize(new Dimension(120, 30));
+        gbc.gridy++;
         painelLogin.add(txtMatricula, gbc);
 
-        // Linha 5: Label Senha
+        // Linha 3
         JLabel lblSenha = new JLabel("Senha:");
-        lblSenha.setFont(new Font("Arial", Font.PLAIN, 16));
-        gbc.gridy = 5;
+        lblSenha.setForeground(Color.BLACK);
+        lblSenha.setFont(new Font("Arial", Font.BOLD, 16));
+        gbc.gridy++;
         painelLogin.add(lblSenha, gbc);
 
-        // Linha 6: Campo de senha
+        // Linha 4
         JPasswordField txtSenha = new JPasswordField();
-        gbc.gridy = 6;
+        txtSenha.setPreferredSize(new Dimension(120, 30));
+        gbc.gridy++;
         painelLogin.add(txtSenha, gbc);
 
-        // Linha 7: Botão login
+        // Linha 5
         JButton btnLogin = new JButton("Login");
-        estilizarBotaoVerde(btnLogin);
-        gbc.gridy = 7;
+        btnLogin.setBackground(Color.WHITE);
+        btnLogin.setForeground(Color.BLACK);
+        btnLogin.setFocusPainted(false);
+        btnLogin.setBorderPainted(true);
+        btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
+        btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnLogin.setPreferredSize(new Dimension(120, 35));
+        gbc.gridy++;
         painelLogin.add(btnLogin, gbc);
 
-        // Linha 8: Label "Não possui cadastro? Cadastre clicando aqui"
+        // Linha 6
         JLabel lblCadastro = new JLabel("<HTML><U>Não possui cadastro? Cadastre clicando aqui</U></HTML>");
-        gbc.gridy = 8;
+        gbc.gridy++;
         lblCadastro.setFont(new Font("Arial", Font.PLAIN, 14));
-        lblCadastro.setForeground(new Color(0, 153, 0));
+        lblCadastro.setForeground(Color.BLACK);
         lblCadastro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new MouseAdapter() {
             @Override
@@ -120,7 +112,7 @@ public class TelaLogin extends JFrame {
        
         painelLogin.add(lblCadastro, gbc);
         
-        gbc.gridy = 9;
+        gbc.gridy++;
         gbc.weighty = 1;
         painelLogin.add(Box.createVerticalStrut(10), gbc);
 
@@ -156,17 +148,6 @@ public class TelaLogin extends JFrame {
         painelImagem.add(lblImagem, BorderLayout.CENTER);
 
         return painelImagem;
-    }
-
-    private void estilizarBotaoVerde(JButton botao) {
-        Color verde = new Color(0, 153, 0);
-        botao.setBackground(verde);
-        botao.setForeground(Color.WHITE);
-        botao.setFocusPainted(false);
-        botao.setBorderPainted(false);
-        botao.setFont(new Font("Arial", Font.BOLD, 14));
-        botao.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        botao.setPreferredSize(new Dimension(120, 35));
     }
 
     // Método main para testar a tela isoladamente

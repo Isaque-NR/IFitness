@@ -54,9 +54,4 @@ public class Usuario {
 		}
 	}
 	
-	@Override
-	public String toString() {
-		return "Nome: " + nome + "| Idade: " + idade + "| Matricula: " + matricula;
-	}
-	
 }

@@ -61,17 +61,4 @@ public class Aluno extends Usuario{
 	public List<Treinos> getMeusTreinos() {
 		return meusTreinos;
 	}
-	
-	public double calcularIMC() {
-        return peso/(altura*altura);
-    }
-	
-	
-    
-	@Override
-	public String toString() {
-		return super.toString()+"| Sexo: " + sexo + "| Peso: " + peso + 
-				"| Altura: " + altura + "| Limitacoes Fisicas Ou Saude: "
-				+ limitacoesFisicasOuSaude + "| Meus Treinos:" + meusTreinos;
-	}
 }

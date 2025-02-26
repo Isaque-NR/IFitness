@@ -75,12 +75,5 @@ public class Instrutor extends Usuario{
 		}
 		return null;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return super.toString() +"| Senha: " + senha + "\n" +
-				"Alunos do Instrutor: " + alunos + "\n" + "Treinos Criados: " + treinosCriados;
-	}
 
 }

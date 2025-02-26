@@ -83,10 +83,4 @@ public class Exercicio {
 		this.intensidade = itensidade;
 	}
 
-	@Override
-	public String toString() {
-		return  nome + ", carga: " + carga + ", repeticoes; " + repeticoes + ", series: " + series
-				+ ", duracao: " + duracao + ", itensidade: " + intensidade ;
-	}
-	
 }
