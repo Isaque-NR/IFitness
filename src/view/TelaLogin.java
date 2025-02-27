@@ -35,7 +35,7 @@ public class TelaLogin extends JFrame {
 
     private JPanel criarPainelLogin() {
         JPanel painelLogin = new JPanel();
-        painelLogin.setBackground(new Color(0, 153, 0));
+        painelLogin.setBackground(Color.WHITE);
         painelLogin.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -86,8 +86,8 @@ public class TelaLogin extends JFrame {
 
         // Linha 5
         JButton btnLogin = new JButton("Login");
-        btnLogin.setBackground(Color.WHITE);
-        btnLogin.setForeground(Color.BLACK);
+        btnLogin.setBackground(new Color(0,153,0));
+        btnLogin.setForeground(Color.WHITE);
         btnLogin.setFocusPainted(false);
         btnLogin.setBorderPainted(true);
         btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
@@ -100,7 +100,7 @@ public class TelaLogin extends JFrame {
         JLabel lblCadastro = new JLabel("<HTML><U>Não possui cadastro? Cadastre clicando aqui</U></HTML>");
         gbc.gridy++;
         lblCadastro.setFont(new Font("Arial", Font.PLAIN, 14));
-        lblCadastro.setForeground(Color.BLACK);
+        lblCadastro.setForeground(new Color(0,153,0));
         lblCadastro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new MouseAdapter() {
             @Override

@@ -37,7 +37,7 @@ public class Treinos {
 		exercicios.add(exercicio);
 	}
 	
-	public void removerExercicios(Exercicio exercicio) {
+	public void removerExercicios(Exercicio exercicio) { // provavel fora
 		exercicios.remove(exercicio);
 	}
 

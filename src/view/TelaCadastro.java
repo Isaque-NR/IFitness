@@ -33,7 +33,7 @@ public class TelaCadastro extends JFrame {
 
     private JPanel criarPainelCadastro() {
         JPanel painelCadastro = new JPanel();
-        painelCadastro.setBackground(new Color(0, 153, 0));
+        painelCadastro.setBackground(Color.WHITE);
         painelCadastro.setLayout(new GridBagLayout());
         
         GridBagConstraints gbc = new GridBagConstraints();
@@ -114,8 +114,8 @@ public class TelaCadastro extends JFrame {
         // Linha 9
         gbc.gridy++;
         JButton btnCadastrar = new JButton("Cadastrar");
-        btnCadastrar.setBackground(Color.WHITE);
-        btnCadastrar.setForeground(Color.BLACK);
+        btnCadastrar.setBackground(new Color(0,153,0));
+        btnCadastrar.setForeground(Color.WHITE);
         btnCadastrar.setFocusPainted(false);
         btnCadastrar.setBorderPainted(true);
         btnCadastrar.setFont(new Font("Arial", Font.BOLD, 14));

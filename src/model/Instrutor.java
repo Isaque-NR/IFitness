@@ -17,7 +17,7 @@ public class Instrutor extends Usuario{
 		this.alunos=new ArrayList<>();
 		this.treinosCriados=new ArrayList<>();
 		}else {
-			System.out.println("Instrutor Invalido");
+		     System.out.println("Instrutor Invalido");
 		}
 	}
 
@@ -33,11 +33,11 @@ public class Instrutor extends Usuario{
 		return alunos;
 	}
 	
-	public List<Treinos> getTreinosCriados (){
+	public List<Treinos> getTreinosCriados (){ // provavel sair 
 		return treinosCriados;
 	}
     
-	public void cadastrarAluno(Aluno aluno) { 
+	public void addAlunoInstrutor(Aluno aluno) { // vai funcionar ao cadastrar uum aluno 
 		alunos.add(aluno);
 	}
 	
@@ -45,7 +45,7 @@ public class Instrutor extends Usuario{
 		alunos.remove(aluno);
 	}
 	
-	public void criarTreino(Treinos treino) {
+	public void criarTreino(Treinos treino) { // fora
 		treinosCriados.add(treino);
 	}
 	

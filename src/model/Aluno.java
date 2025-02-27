@@ -61,4 +61,5 @@ public class Aluno extends Usuario{
 	public List<Treinos> getMeusTreinos() {
 		return meusTreinos;
 	}
+	//
 }
