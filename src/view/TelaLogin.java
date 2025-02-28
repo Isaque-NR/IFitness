@@ -100,7 +100,7 @@ public class TelaLogin extends JFrame {
         JLabel lblCadastro = new JLabel("<HTML><U>Não possui cadastro? Cadastre clicando aqui</U></HTML>");
         gbc.gridy++;
         lblCadastro.setFont(new Font("Arial", Font.PLAIN, 14));
-        lblCadastro.setForeground(new Color(0,153,0));
+        lblCadastro.setForeground(new Color(18,167,60));
         lblCadastro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblCadastro.addMouseListener(new MouseAdapter() {
             @Override

@@ -3,14 +3,14 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 
-public class TelaCadastro extends JFrame {
+public class TelaCadastroInstrutor extends JFrame {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public TelaCadastro() {
+	public TelaCadastroInstrutor() {
         super("IFitness");
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -78,9 +78,9 @@ public class TelaCadastro extends JFrame {
         
      // Linha 4: JComboBox para selecionar a idade
         gbc.gridy++;
-        Integer[] idades = new Integer[80 - 16 + 1];
-        for (int i = 16; i <= 80; i++) {
-            idades[i - 16] = i;
+        Integer[] idades = new Integer[80 - 18 + 1];
+        for (int i = 18; i <= 80; i++) {
+            idades[i - 18] = i;
         }
         JComboBox<Integer> cbIdade = new JComboBox<>(idades);
         painelCadastro.add(cbIdade, gbc);
@@ -114,7 +114,7 @@ public class TelaCadastro extends JFrame {
         // Linha 9
         gbc.gridy++;
         JButton btnCadastrar = new JButton("Cadastrar");
-        btnCadastrar.setBackground(new Color(0,153,0));
+        btnCadastrar.setBackground(new Color(18,167,60));
         btnCadastrar.setForeground(Color.WHITE);
         btnCadastrar.setFocusPainted(false);
         btnCadastrar.setBorderPainted(true);
@@ -162,7 +162,7 @@ public class TelaCadastro extends JFrame {
     // Método main apenas para teste isolado desta tela
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new TelaCadastro().setVisible(true);
+            new TelaCadastroInstrutor().setVisible(true);
         });
     }
 }

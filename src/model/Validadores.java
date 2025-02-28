@@ -9,7 +9,7 @@ public class  Validadores {
 	}
 
 	public static boolean isIdadeValid(int idade) {
-		return idade >= 12 && idade <= 100; 
+		return idade >= 12 && idade <= 80; 
 	}
 	
 	public static boolean isMatriculaValid(String matricula) {
