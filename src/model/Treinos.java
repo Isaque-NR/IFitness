@@ -1,6 +1,9 @@
 package model;
 
 import java.util.List;
+
+import utils.Validadores;
+
 import java.util.ArrayList;
 
 public class Treinos {

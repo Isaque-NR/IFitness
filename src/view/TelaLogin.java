@@ -86,7 +86,7 @@ public class TelaLogin extends JFrame {
 
         // Linha 5
         JButton btnLogin = new JButton("Login");
-        btnLogin.setBackground(new Color(0,153,0));
+        btnLogin.setBackground(new Color(18,167,60));
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFocusPainted(false);
         btnLogin.setBorderPainted(true);

@@ -1,5 +1,7 @@
 package model;
 
+import utils.Validadores;
+
 public class Usuario {
 	
 	private String nome;

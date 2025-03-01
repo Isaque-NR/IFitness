@@ -1,5 +1,7 @@
 package model;
 
+import utils.Validadores;
+
 public class Exercicio {
 	
 	private String nome;

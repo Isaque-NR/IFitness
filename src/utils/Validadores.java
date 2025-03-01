@@ -1,4 +1,4 @@
-package model;
+package utils;
 
 public class  Validadores {
 	
@@ -42,8 +42,7 @@ public class  Validadores {
 	// validadores instrutor 
 	public static boolean isSenhaValid(String senha) {
 		return senha!=null && !senha.isEmpty()
-				&& senha.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$");
-		// senha deve possuir aos menos uma letra, um numero e um caracter especial
+				&& senha.matches("^[a-zA-Z0-9!@#$%^&*()_+={}\\[\\]|\\\\:;\\\"'<>,.?/`~\\-]{6}$\r\n");
 	}
 	
 	// validadores Treinos

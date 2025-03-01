@@ -87,7 +87,7 @@ public class TelaCadastroInstrutor extends JFrame {
 
         // Linha 5
         gbc.gridy++;
-        JLabel lblMatricula = new JLabel("Matrícula:");
+        JLabel lblMatricula = new JLabel("Nº de matrícula: (5 dígitos)");
         lblMatricula.setFont(new Font("Arial", Font.BOLD, 16));
         lblMatricula.setForeground(Color.BLACK);
         painelCadastro.add(lblMatricula, gbc);
@@ -100,7 +100,7 @@ public class TelaCadastroInstrutor extends JFrame {
 
         // Linha 7
         gbc.gridy++;
-        JLabel lblSenha = new JLabel("Senha:");
+        JLabel lblSenha = new JLabel("Senha: (6 dígitos)");
         lblSenha.setFont(new Font("Arial", Font.BOLD, 16));
         lblSenha.setForeground(Color.BLACK);
         painelCadastro.add(lblSenha, gbc);
