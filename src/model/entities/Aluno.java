@@ -2,7 +2,7 @@ package model.entities;
 
 import java.util.List;
 
-import util.Validadores;
+import model.util.Validadores;
 
 import java.util.ArrayList;
 
@@ -64,5 +64,5 @@ public class Aluno extends Usuario{
 	public List<Treinos> getMeusTreinos() {
 		return meusTreinos;
 	}
-	//
+	
 }

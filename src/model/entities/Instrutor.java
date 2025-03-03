@@ -2,23 +2,23 @@ package model.entities;
 
 import java.util.List;
 
-import util.Validadores;
+import model.util.Validadores;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import model.entities.Aluno;
 
 public class Instrutor extends Usuario{
 	
 	private String senha;
 	private List<Aluno> alunos;
-	private List<Treinos> treinosCriados;
+
 	
 	public Instrutor(String nome, int idade, String matricula, String senha) {
 		super(nome,idade,matricula);
 		if(Validadores.isSenhaValid(senha)) {
 		this.senha=senha;
 		this.alunos=new ArrayList<>();
-		this.treinosCriados=new ArrayList<>();
 		}else {
 		     System.out.println("Instrutor Invalido");
 		}
@@ -35,10 +35,6 @@ public class Instrutor extends Usuario{
 	public List<Aluno> getAlunos() { 
 		return alunos;
 	}
-	
-	public List<Treinos> getTreinosCriados (){ // provavel sair 
-		return treinosCriados;
-	}
     
 	public void addAlunoInstrutor(Aluno aluno) { // vai funcionar ao cadastrar uum aluno 
 		alunos.add(aluno);
@@ -48,19 +44,16 @@ public class Instrutor extends Usuario{
 		alunos.remove(aluno);
 	}
 	
-	public void criarTreino(Treinos treino) { // fora
-		treinosCriados.add(treino);
-	}
-	
-	public void removerTreino(String descricao) {
-	    Iterator<Treinos> iterator = treinosCriados.iterator();
+	//arrumar isso pois somente aluno tem lista de treino.
+	/*public void removerTreino(String descricao) {
+	    Iterator<Treinos> iterator = getMeusTreinos.iterator();
 	    while (iterator.hasNext()) {
 	        Treinos treino = iterator.next();
 	        if (treino.getNome().equals(descricao)) {
 	            iterator.remove();
 	        }
 	    }
-	}
+	}*/
 
 	public void associarTreino(Aluno aluno, Treinos treino) {
 		aluno.getMeusTreinos().add(treino);

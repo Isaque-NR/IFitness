@@ -1,6 +1,6 @@
 package model.entities;
 
-import util.Validadores;
+import model.util.Validadores;
 
 public class Usuario {
 	

@@ -2,7 +2,7 @@ package model.entities;
 
 import java.util.List;
 
-import util.Validadores;
+import model.util.Validadores;
 
 import java.util.ArrayList;
 
@@ -38,10 +38,6 @@ public class Treinos {
 	
 	public void adicionarExercicio(Exercicio exercicio) {
 		exercicios.add(exercicio);
-	}
-	
-	public void removerExercicios(Exercicio exercicio) { // provavel fora
-		exercicios.remove(exercicio);
 	}
 
 	@Override
