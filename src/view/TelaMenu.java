@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class TelaMenu extends JFrame {
@@ -53,8 +56,28 @@ public class TelaMenu extends JFrame {
         JButton btnListarAlunos = new JButton("Listar Alunos");
         JButton btnConsultarAluno = new JButton("Consultar Aluno");
         JButton btnRemoverAluno = new JButton("Remover Aluno");
+        btnRemoverAluno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Supondo que "this" seja um JFrame do menu
+                DialogRemoverAluno dialog = new DialogRemoverAluno(TelaMenu.this);
+                dialog.setVisible(true);
+                // Aqui, quando o diálogo fechar, você pode atualizar a tela de menu, se necessário
+            }
+        });
         JButton btnCriarTreino = new JButton("Criar Treino");
         JButton btnApagarTreino = new JButton("Apagar Treino");
+        btnApagarTreino.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Supondo que "this" seja um JFrame do menu
+                DialogRemoverTreino dialog = new DialogRemoverTreino(TelaMenu.this);
+                dialog.setVisible(true);
+                // Aqui, quando o diálogo fechar, você pode atualizar a tela de menu, se necessário
+            }
+        });
+        
+        
 
         // Estiliza todos com o mesmo padrão
         estilizarBotaoVerde(btnCadastrarAluno);

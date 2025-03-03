@@ -1,34 +1,34 @@
-package model;
+package model.entities;
 
 import java.util.List;
 
-import utils.Validadores;
+import util.Validadores;
 
 import java.util.ArrayList;
 
 public class Treinos {
 	
-	private String descricao;
+	private String nome;
 	private List<Exercicio> exercicios;
 	
-	public Treinos(String descricao) {
-		if(Validadores.isDescricaoValid(descricao)) {
-		this.descricao=descricao;
+	public Treinos(String nome) {
+		if(Validadores.isNomeTreinoValid(nome)) {
+		this.nome=nome;
 		this.exercicios=new ArrayList<>();
 		}else {
 			System.out.println("Treino Invalido");
 		}
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		if(Validadores.isDescricaoValid(descricao)) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		if(Validadores.isNomeTreinoValid(nome)) {
+		this.nome = nome;
 		}else {
-			System.out.println("Insira uma descricao válida!");
+			System.out.println("Insira um nome válido!");
 		}
 	}
 
@@ -46,7 +46,7 @@ public class Treinos {
 
 	@Override
 	public String toString() {
-		return "Descricao:" + descricao + ", exercicios: " + exercicios.toString();
+		return "nome:" + nome + ", exercicios: " + exercicios.toString();
 	}
 	
 }

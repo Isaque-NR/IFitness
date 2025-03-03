@@ -1,8 +1,8 @@
-package model;
+package model.entities;
 
 import java.util.List;
 
-import utils.Validadores;
+import util.Validadores;
 
 import java.util.ArrayList;
 

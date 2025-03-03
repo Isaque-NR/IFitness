@@ -1,8 +1,8 @@
-package model;
+package model.entities;
 
 import java.util.List;
 
-import utils.Validadores;
+import util.Validadores;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -56,7 +56,7 @@ public class Instrutor extends Usuario{
 	    Iterator<Treinos> iterator = treinosCriados.iterator();
 	    while (iterator.hasNext()) {
 	        Treinos treino = iterator.next();
-	        if (treino.getDescricao().equals(descricao)) {
+	        if (treino.getNome().equals(descricao)) {
 	            iterator.remove();
 	        }
 	    }

@@ -30,7 +30,7 @@ public class TelaConsultaAluno extends JFrame {
         gbc.anchor = GridBagConstraints.NORTH;
         
         JLabel lblTitulo = new JLabel("Consultar Aluno");
-        lblTitulo.setFont(new Font("Arial", Font.PLAIN, 36));
+        lblTitulo.setFont(new Font("Arial", Font.PLAIN, 32));
         lblTitulo.setForeground(Color.BLACK);
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 0;
@@ -38,7 +38,7 @@ public class TelaConsultaAluno extends JFrame {
         gbc.gridwidth = 2;
         painelPrincipal.add(lblTitulo, gbc);
         
-        JPanel panelBusca = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel panelBusca = new JPanel(new FlowLayout(FlowLayout.CENTER,40,5));
         panelBusca.setBackground(Color.GRAY);
         JLabel lblMatricula = new JLabel("Matrícula:");
         lblMatricula.setFont(new Font("Arial", Font.BOLD, 16));
@@ -48,10 +48,10 @@ public class TelaConsultaAluno extends JFrame {
         btnBuscar.setBackground(new Color(18,167,60));
         btnBuscar.setForeground(Color.WHITE);
         btnBuscar.setFocusPainted(false);
-        btnBuscar.setBorderPainted(false);
+        btnBuscar.setBorderPainted(true);
         btnBuscar.setFont(new Font("Arial", Font.BOLD, 14));
         btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnBuscar.setPreferredSize(new Dimension(120, 35));
+        btnBuscar.setPreferredSize(new Dimension(120, 25));
         
         panelBusca.add(lblMatricula);
         panelBusca.add(tfMatricula);
@@ -85,10 +85,10 @@ public class TelaConsultaAluno extends JFrame {
         btnVoltar.setBackground(new Color(18,167,60));
         btnVoltar.setForeground(Color.WHITE);
         btnVoltar.setFocusPainted(false);
-        btnVoltar.setBorderPainted(false);
+        btnVoltar.setBorderPainted(true);
         btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
         btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnVoltar.setPreferredSize(new Dimension(120, 35));
+        btnVoltar.setPreferredSize(new Dimension(120, 25));
           
         panelVoltar.add(btnVoltar);
         
@@ -114,14 +114,14 @@ public class TelaConsultaAluno extends JFrame {
             return;
         }
         
-        // Simulação: Dados fixos para demonstração
+        // Simulação: Dados fixos para demonstração (dar um select no post)
         String nome = "João da Silva";
         int idade = 25;
         String sexo = "Masculino";
         String matricula = matriculaConsulta;
         String peso = "70 kg";
         String altura = "1.75 m";
-        String limitacoes = "Nenhuma";
+        String limitacoes = "Dor na lombar e dificuldade para agachar.";
         String treinos = "Treino 1:\n  - Agachamento: 3x12\n  - Supino: 3x10\n\n"
                        + "Treino 2:\n  - Corrida: 30 min\n  - Abdominal: 3x20\n";
         

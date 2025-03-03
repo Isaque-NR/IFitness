@@ -1,4 +1,4 @@
-package utils;
+package util;
 
 public class  Validadores {
 	
@@ -46,7 +46,7 @@ public class  Validadores {
 	}
 	
 	// validadores Treinos
-	public static boolean isDescricaoValid(String descricao) {
+	public static boolean isNomeTreinoValid(String descricao) {
 		return descricao!=null && !descricao.isEmpty() && 
 				  descricao.matches("[a-zA-Z0-9 ]+"); 
 	}
@@ -54,8 +54,7 @@ public class  Validadores {
 	// validadores Exercicio
 	public static boolean isIntensidadeValid(String itensidade) {
 		return itensidade!=null && !itensidade.isEmpty() 
-				 && itensidade.equalsIgnoreCase("leve") 
-				|| itensidade.equalsIgnoreCase("moderada") || itensidade.equalsIgnoreCase("itenso");
+				 && itensidade.matches("^[a-zA-Z0-9 ]+$");
 	}
 	
 	

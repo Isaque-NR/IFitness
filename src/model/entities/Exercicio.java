@@ -1,6 +1,6 @@
-package model;
+package model.entities;
 
-import utils.Validadores;
+import util.Validadores;
 
 public class Exercicio {
 	
@@ -8,7 +8,7 @@ public class Exercicio {
 	private double carga;
 	private int repeticoes;
 	private int series;
-	private int duracao; // min
+	private int duracao; // minutos
 	private String intensidade; // leve,moderado,itenso
 	
 	// Construtor Exercicos de Musculação
@@ -18,6 +18,7 @@ public class Exercicio {
 		this.carga=carga;
 		this.repeticoes=repeticoes;
 		this.series=series;
+		this.duracao=0;
 		this.intensidade = "N/A";
 		}else {
 			System.out.println("Exercicio Invalido");
@@ -26,11 +27,14 @@ public class Exercicio {
 	
 	// Construtor Exercicios Cardio
 	
-	public Exercicio (String nome, int duracao, String itensidade) {
-		if(Validadores.isExercicioCardioValid(nome, duracao, itensidade)) {
+	public Exercicio (String nome, int duracao, String intensidade) {
+		if(Validadores.isExercicioCardioValid(nome, duracao, intensidade)) {
 		this.nome=nome;
+		this.carga=0;
+		this.repeticoes=0;
+		this.series=0;
 		this.duracao=duracao;
-		this.intensidade=itensidade;
+		this.intensidade=intensidade;
 		}else {
 			System.out.println("Exercicio Invalido");
 		}
