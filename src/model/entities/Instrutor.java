@@ -5,8 +5,6 @@ import java.util.List;
 import model.util.Validadores;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import model.entities.Aluno;
 
 public class Instrutor extends Usuario{
 	

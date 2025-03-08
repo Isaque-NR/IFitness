@@ -36,6 +36,10 @@ public class Treinos {
 		return exercicios;
 	}
 	
+	public void setExercicios(List<Exercicio> exercicios) {
+	    this.exercicios = exercicios;
+	}
+	
 	public void adicionarExercicio(Exercicio exercicio) {
 		exercicios.add(exercicio);
 	}
