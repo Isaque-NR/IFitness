@@ -39,7 +39,7 @@ public class Instrutor extends Usuario implements Serializable {
 		return alunos;
 	}
     
-	public void addAlunoInstrutor(Aluno aluno) { // vai funcionar ao cadastrar uum aluno 
+	public void addAlunoInstrutor(Aluno aluno) {
 		alunos.add(aluno);
 	}
 	
@@ -63,5 +63,5 @@ public class Instrutor extends Usuario implements Serializable {
 		}
 		return null;
 	}
-
+	
 }

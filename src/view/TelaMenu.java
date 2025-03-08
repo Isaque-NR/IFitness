@@ -63,10 +63,8 @@ public class TelaMenu extends JFrame {
         btnRemoverAluno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Supondo que "this" seja um JFrame do menu
-                DialogRemoverAluno dialog = new DialogRemoverAluno(TelaMenu.this);
+                DialogRemoverAluno dialog = new DialogRemoverAluno(TelaMenu.this, instrutorLogado);
                 dialog.setVisible(true);
-                // Aqui, quando o diálogo fechar, você pode atualizar a tela de menu, se necessário
             }
         });
         JButton btnCriarTreino = new JButton("Criar Treino");
@@ -74,10 +72,9 @@ public class TelaMenu extends JFrame {
         btnApagarTreino.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Supondo que "this" seja um JFrame do menu
-                DialogRemoverTreino dialog = new DialogRemoverTreino(TelaMenu.this);
+                DialogRemoverTreino dialog = new DialogRemoverTreino(TelaMenu.this, instrutorLogado);
                 dialog.setVisible(true);
-                // Aqui, quando o diálogo fechar, você pode atualizar a tela de menu, se necessário
+                
             }
         });
         
@@ -148,12 +145,6 @@ public class TelaMenu extends JFrame {
                 g2d.dispose();
             }
         }
-    }
-    
-    /*public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new TelaMenu(instrutorLogado).setVisible(true);
-        });
-    }*/
+    }  
 }
 

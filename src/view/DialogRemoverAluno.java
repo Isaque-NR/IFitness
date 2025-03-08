@@ -4,13 +4,19 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import model.entities.Aluno;
+import model.entities.Instrutor;
+import controller.InstrutorController;
+
 public class DialogRemoverAluno extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private JTextField txtMatricula;
+    private Instrutor instrutorLogado;
 
-    public DialogRemoverAluno(Frame telaMenu) {
+    public DialogRemoverAluno(Frame telaMenu, Instrutor instrutorLogado) {
         super(telaMenu, "Remover Aluno", true);
+        this.instrutorLogado = instrutorLogado;
         inicializarComponentes();
         setPreferredSize(new Dimension(420,250));
         pack(); 
@@ -57,9 +63,8 @@ public class DialogRemoverAluno extends JDialog {
         painelPrincipal.add(painelBotoes, gbc);
 
         // Ação do botão Remover
-        btnRemover.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btnRemover.addActionListener(e -> {
+        	
                 String matricula = txtMatricula.getText().trim();
                 if(matricula.isEmpty()) {
                     JOptionPane.showMessageDialog(
@@ -70,23 +75,31 @@ public class DialogRemoverAluno extends JDialog {
                     );
                     return;
                 }
-                // --- Aqui entra a lógica de remoção ---
-                // Exemplo de mensagem de sucesso:
+                
+                Aluno alunoRemovido = instrutorLogado.consultarAluno(matricula);
+                if(alunoRemovido != null) { 
+                instrutorLogado.removerAluno(alunoRemovido);
+                InstrutorController instrutorController = new InstrutorController();
+                instrutorController.atualizarDados(instrutorLogado);
+                
                 JOptionPane.showMessageDialog(
-                    DialogRemoverAluno.this,
-                    "Aluno de matrícula " + matricula + " removido com sucesso!",
-                    "Remoção",
-                    JOptionPane.INFORMATION_MESSAGE
-                );
-                dispose(); // Fecha o diálogo
-            }
+                        DialogRemoverAluno.this,
+                        "Aluno de matrícula " + matricula + " removido com sucesso!",
+                        "Remoção",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    dispose();
+                
+                } else {
+                    JOptionPane.showMessageDialog(this, "Matrícula do aluno inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }    
         });
 
-        // Ação do botão Cancelar
+        // Ação do botão cancelar
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose(); // Apenas fecha o diálogo
+                dispose(); 
             }
         });
     }

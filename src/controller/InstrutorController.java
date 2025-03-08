@@ -20,6 +20,11 @@ public class InstrutorController {
         Instrutor novoInstrutor = Fabrica.getInstrutor(nome, idade, matricula, senha);
         return instrutorDAO.cadastrarInstrutor(novoInstrutor);
     }
-
+    
+    public void atualizarDados (Instrutor instrutorLogado) {
+    	instrutorDAO.atualizarArquivo(instrutorLogado);
+    }
+    
+    
 }
 

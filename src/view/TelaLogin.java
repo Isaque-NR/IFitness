@@ -8,8 +8,6 @@ import javax.swing.*;
 import controller.InstrutorController;
 import model.entities.Instrutor;
 
-import java.io.Serializable;
-
 public class TelaLogin extends JFrame {
 
     /**

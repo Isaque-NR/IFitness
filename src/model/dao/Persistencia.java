@@ -12,8 +12,7 @@ public class Persistencia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static void salvarDados (Object objeto, String caminho) {
-		try {
-			ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream (caminho));
+		try (ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream (caminho))) {
 			oos.writeObject (objeto);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -26,9 +25,7 @@ public class Persistencia implements Serializable {
 			return new ArrayList<>();
 		}
 		
-		
-		try {
-			ObjectInputStream ois = new ObjectInputStream (new FileInputStream (caminho));
+		try (ObjectInputStream ois = new ObjectInputStream (new FileInputStream (caminho))) {
 			return ois.readObject();
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();

@@ -37,5 +37,14 @@ public class InstrutorDAO {
         }
         return null;
     }
+    
+    public void atualizarArquivo (Instrutor instrutorLogado) {
+    	for (Instrutor i : instrutores) {
+    		if (i.getMatricula().equals(instrutorLogado.getMatricula()));{
+    			instrutores.remove(i);
+    			instrutores.add(instrutorLogado);
+    			Persistencia.salvarDados(instrutores, ARQUIVO);
+    		}
+    	}
+    }
 }
-
