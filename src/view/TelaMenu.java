@@ -6,16 +6,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import model.entities.Instrutor;
+
 public class TelaMenu extends JFrame {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public TelaMenu() {
+	
+	private Instrutor instrutorLogado;
+	public TelaMenu(Instrutor instrutorLogado) {
         super("IFitness");
         inicializarComponentes();
+        this.instrutorLogado = instrutorLogado;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,7 +128,7 @@ public class TelaMenu extends JFrame {
 		private Image imagemFundo;
 
         public PainelFundo() {
-                ImageIcon iconeOriginal = new ImageIcon(getClass().getResource("/resources/Atleta.png"));
+                ImageIcon iconeOriginal = new ImageIcon(getClass().getResource("/view/resource/Atleta.png"));
                 imagemFundo = iconeOriginal.getImage();
         }
 
@@ -145,12 +149,11 @@ public class TelaMenu extends JFrame {
             }
         }
     }
-
-    // Teste isolado
-    public static void main(String[] args) {
+    
+    /*public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new TelaMenu().setVisible(true);
+            new TelaMenu(instrutorLogado).setVisible(true);
         });
-    }
+    }*/
 }
 

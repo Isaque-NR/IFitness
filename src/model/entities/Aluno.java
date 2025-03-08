@@ -1,13 +1,16 @@
 package model.entities;
 
 import java.util.List;
-
+import java.io.Serializable;
 import model.util.Validadores;
-
 import java.util.ArrayList;
 
-public class Aluno extends Usuario{
+public class Aluno extends Usuario implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String sexo;
 	private double peso;
 	private double altura;

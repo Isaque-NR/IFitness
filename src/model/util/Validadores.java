@@ -1,4 +1,4 @@
-package util;
+package model.util;
 
 public class  Validadores {
 	
@@ -41,8 +41,7 @@ public class  Validadores {
 	
 	// validadores instrutor 
 	public static boolean isSenhaValid(String senha) {
-		return senha!=null && !senha.isEmpty()
-				&& senha.matches("^[a-zA-Z0-9!@#$%^&*()_+={}\\[\\]|\\\\:;\\\"'<>,.?/`~\\-]{6}$\r\n");
+		return senha!=null && !senha.isEmpty();			
 	}
 	
 	// validadores Treinos

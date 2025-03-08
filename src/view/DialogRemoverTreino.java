@@ -4,11 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 public class DialogRemoverTreino extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private JTextField txtMatricula;
     private JTextField txtNomeTreino;
+    
 
     public DialogRemoverTreino(Frame telaMenu) {
         super(telaMenu, "Remover Treino", true);
@@ -82,14 +84,13 @@ public class DialogRemoverTreino extends JDialog {
                     );
                     return;
                 }
-                // Aqui você implementará a lógica de remoção real
+                
                 JOptionPane.showMessageDialog(
-                    DialogRemoverTreino.this,
-                    "Treino \"" + nomeTreino + "\" removido do aluno com matrícula " + matricula + "!",
-                    "Remoção",
-                    JOptionPane.INFORMATION_MESSAGE
-                );
-                dispose(); // Fecha o diálogo
+                        DialogRemoverTreino.this,
+                        "Treino--> " + nomeTreino + "\n" + "Do aluno de matrícula " + matricula + " foi removido com sucesso!",
+                        "Treino removido",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
             }
         });
 

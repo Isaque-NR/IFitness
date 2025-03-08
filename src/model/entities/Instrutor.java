@@ -4,10 +4,15 @@ import java.util.List;
 
 import model.util.Validadores;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Instrutor extends Usuario{
+public class Instrutor extends Usuario implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String senha;
 	private List<Aluno> alunos;
 
@@ -41,17 +46,6 @@ public class Instrutor extends Usuario{
 	public void removerAluno(Aluno aluno) { 
 		alunos.remove(aluno);
 	}
-	
-	//arrumar isso pois somente aluno tem lista de treino.
-	/*public void removerTreino(String descricao) {
-	    Iterator<Treinos> iterator = getMeusTreinos.iterator();
-	    while (iterator.hasNext()) {
-	        Treinos treino = iterator.next();
-	        if (treino.getNome().equals(descricao)) {
-	            iterator.remove();
-	        }
-	    }
-	}*/
 
 	public void associarTreino(Aluno aluno, Treinos treino) {
 		aluno.getMeusTreinos().add(treino);

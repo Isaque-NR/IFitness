@@ -3,6 +3,8 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 
+import controller.InstrutorController;
+
 public class TelaCadastroInstrutor extends JFrame {
 
     /**
@@ -121,6 +123,26 @@ public class TelaCadastroInstrutor extends JFrame {
         btnCadastrar.setFont(new Font("Arial", Font.BOLD, 14));
         btnCadastrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnCadastrar.setPreferredSize(new Dimension(120, 35));
+        
+        btnCadastrar.addActionListener(e -> {
+            String nome = txtNome.getText().trim();
+            String matricula = txtMatricula.getText().trim();
+            String senha = new String(txtSenha.getPassword()).trim();
+            int idade = (int) cbIdade.getSelectedItem();
+
+            InstrutorController instrutorController = new InstrutorController();
+            boolean sucesso = instrutorController.cadastrarInstrutor(nome, idade, matricula, senha);
+
+            if (sucesso) {
+                JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                new TelaLogin().setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Matrícula já cadastrada!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        
         painelCadastro.add(btnCadastrar, gbc);
 
         gbc.gridy++;
@@ -141,7 +163,7 @@ public class TelaCadastroInstrutor extends JFrame {
         int painelDireitoHeight = screenSize.height;
 
         // Carrega a imagem
-        ImageIcon iconeOriginal = new ImageIcon(getClass().getResource("/resources/Atleta.png"));
+        ImageIcon iconeOriginal = new ImageIcon(getClass().getResource("/view/resource/Atleta.png"));
         Image imgOriginal = iconeOriginal.getImage();
 
         Image imgRedimensionada = imgOriginal.getScaledInstance(
@@ -157,12 +179,5 @@ public class TelaCadastroInstrutor extends JFrame {
 
         painelImagem.add(lblImagem, BorderLayout.CENTER);
         return painelImagem;
-    }
-
-    // Método main apenas para teste isolado desta tela
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new TelaCadastroInstrutor().setVisible(true);
-        });
     }
 }

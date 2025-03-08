@@ -1,9 +1,15 @@
 package model.entities;
 
+import java.io.Serializable;
+
 import model.util.Validadores;
 
-public class Exercicio {
+public class Exercicio implements Serializable  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private double carga;
 	private int repeticoes;

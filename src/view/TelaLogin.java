@@ -5,6 +5,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+import controller.InstrutorController;
+import model.entities.Instrutor;
+
+import java.io.Serializable;
+
 public class TelaLogin extends JFrame {
 
     /**
@@ -94,6 +99,30 @@ public class TelaLogin extends JFrame {
         btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnLogin.setPreferredSize(new Dimension(120, 35));
         gbc.gridy++;
+        btnLogin.addActionListener(e -> {
+        	
+        	String matricula = txtMatricula.getText().trim();
+            String senha = new String(txtSenha.getPassword()).trim();
+            
+            //fazer como uma exceção 
+            if (matricula.isEmpty() || senha.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            InstrutorController instrutorController = new InstrutorController();
+            Instrutor instrutorLogado = instrutorController.autenticarInstrutor(matricula, senha);
+
+            if (instrutorLogado != null) {
+                JOptionPane.showMessageDialog(this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
+                new TelaMenu(instrutorLogado).setVisible(true); // Abre a tela do menu com o instrutor logado
+                dispose(); // Fecha a tela de login
+            } else {
+                JOptionPane.showMessageDialog(this, "Matrícula ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        });
+        
         painelLogin.add(btnLogin, gbc);
 
         // Linha 6
@@ -105,8 +134,8 @@ public class TelaLogin extends JFrame {
         lblCadastro.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Aqui você poderia chamar outra tela ou fazer alguma ação
-                System.out.println("Clique no link de cadastro");
+            	new TelaCadastroInstrutor().setVisible(true);
+                dispose();
             }
         });
        
@@ -130,7 +159,7 @@ public class TelaLogin extends JFrame {
         int painelDireitoHeight = screenSize.height;
 
         // Carrega a imagem do corredor do pacote resources
-        ImageIcon iconeOriginal = new ImageIcon(getClass().getResource("/resources/Atleta.png"));
+        ImageIcon iconeOriginal = new ImageIcon(getClass().getResource("/view/resource/Atleta.png"));
         Image imgOriginal = iconeOriginal.getImage();
 
         // Redimensiona a imagem para ocupar todo o painel direito
@@ -149,11 +178,11 @@ public class TelaLogin extends JFrame {
 
         return painelImagem;
     }
-
-    // Método main para testar a tela isoladamente
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new TelaLogin().setVisible(true);
         });
     }
+    
 }

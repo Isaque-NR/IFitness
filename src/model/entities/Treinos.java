@@ -4,10 +4,15 @@ import java.util.List;
 
 import model.util.Validadores;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Treinos {
+public class Treinos implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private List<Exercicio> exercicios;
 	
