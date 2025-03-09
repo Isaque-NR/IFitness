@@ -1,18 +1,27 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
+import model.entities.Aluno;
+import model.entities.Instrutor;
 
 public class TelaListaAlunos extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTable tabelaAlunos;
     private DefaultTableModel modeloTabela;
+    private Instrutor instrutorLogado;
 
-    public TelaListaAlunos() {
+    public TelaListaAlunos(Instrutor instrutorLogado) {
         super("IFitness");
+        this.instrutorLogado = instrutorLogado;
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
@@ -36,16 +45,20 @@ public class TelaListaAlunos extends JFrame {
         // Colunas
         String[] colunas = { "Nome", "Idade", "Matrícula" };
         
-        // Dados de exemplo (substituir com os dados reais)
-        Object[][] dadosExemplo = {
-            {"João da Silva", 25, "31001"},
-            {"Maria Oliveira", 30, "31002"},
-            {"Carlos Souza", 22, "31003"},
-            {"Ana Paula", 29, "20004"},
-            {"Bruno Lima", 40, "20231"},
-        };
+        List<Aluno> listaAlunos = instrutorLogado.getAlunos();
+        
+     // Isso cria a matriz de dados da tabela com base na lista real do instrutor
+        Object[][] Alunos = new Object[listaAlunos.size()][3];
+        
+        //E aqui é feito o preencimento dos dados 
+        for (int i = 0; i < listaAlunos.size(); i++) {
+            Aluno aluno = listaAlunos.get(i);
+            Alunos[i][0] = aluno.getNome();
+            Alunos[i][1] = aluno.getIdade();
+            Alunos[i][2] = aluno.getMatricula();
+        }
 
-        modeloTabela = new DefaultTableModel(dadosExemplo, colunas) {
+        modeloTabela = new DefaultTableModel(Alunos, colunas) {
             private static final long serialVersionUID = 1L;
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -58,7 +71,7 @@ public class TelaListaAlunos extends JFrame {
         tabelaAlunos.setRowHeight(20);
         tabelaAlunos.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
 
-        // Centraliza o conteúdo das células:
+        // Centraliza o conteúdo das células
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < tabelaAlunos.getColumnCount(); i++) {
@@ -82,22 +95,19 @@ public class TelaListaAlunos extends JFrame {
         btnVoltar.setBorderPainted(true);
         btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
         btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnVoltar.setPreferredSize(new Dimension(120, 35)); // Botão compacto
+        btnVoltar.setPreferredSize(new Dimension(120, 35));
+        btnVoltar.addActionListener(e -> {
+        	new TelaMenu(instrutorLogado).setVisible(true);
+        	dispose();
+        	
+        });
         painelbtnVoltarVoltar.add(btnVoltar);
-
-        // Linha 1: Botão "Voltar" (com weighty zero para não expandir)
+     
         gbc.gridy = 1;
         gbc.weighty = 0;
         gbc.fill = GridBagConstraints.NONE; // Não permitir que estique o botão
         painelPrincipal.add(painelbtnVoltarVoltar, gbc);
     }
 
-
-    // Teste isolado
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new TelaListaAlunos().setVisible(true);
-        });
-    }
 }
 
