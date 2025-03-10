@@ -77,45 +77,48 @@ public class DialogRemoverTreino extends JDialog {
         painelPrincipal.add(painelBotoes, gbc);
 
         // Ação para o botão Remover
-        btnRemover.addActionListener(e -> {
+        btnRemover.addActionListener(new ActionListener () {
       
-          String matricula = txtMatricula.getText().trim();
-          String nomeTreino = txtNomeTreino.getText().trim();
-          if (matricula.isEmpty() || nomeTreino.isEmpty()) {
-             JOptionPane.showMessageDialog(
-             DialogRemoverTreino.this,"Por favor, preencha a matrícula e o nome do treino.",
-             "Erro", JOptionPane.ERROR_MESSAGE);
-                   
-             return;
-          }
-                               
-           Aluno aluno = instrutorLogado.consultarAluno(matricula);
-                
-           if(aluno != null) {
-                	
-              List<Treinos> treinos = aluno.getMeusTreinos();
-                	
-              for (Treinos treino : treinos) {
-                		
-                if (treino.getNome().equals(nomeTreino)) {
-                	instrutorLogado.dissociarTreino(aluno, treino);
-                	InstrutorController instrutorController = new InstrutorController();
-                    instrutorController.atualizarDados(instrutorLogado);
-                    
-                    JOptionPane.showMessageDialog( DialogRemoverTreino.this, "Treino--> " + nomeTreino +
-                     "\n" + "Do aluno de matrícula " + matricula + " foi removido com sucesso!",
-                     "Treino removido", JOptionPane.INFORMATION_MESSAGE);
-                
-                } else {
-                    JOptionPane.showMessageDialog(this, "Treino não encontrado!",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
-                  }  
-              }
-                	
-           } else {
-              JOptionPane.showMessageDialog(this, "Aluno não encontrado!",
-            "Erro", JOptionPane.ERROR_MESSAGE);
-             }                             
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String matricula = txtMatricula.getText().trim();
+	          String nomeTreino = txtNomeTreino.getText().trim();
+	          if (matricula.isEmpty() || nomeTreino.isEmpty()) {
+	             JOptionPane.showMessageDialog(
+	             DialogRemoverTreino.this,"Por favor, preencha a matrícula e o nome do treino.",
+	             "Erro", JOptionPane.ERROR_MESSAGE);
+	                   
+	             return;
+	          }
+	                               
+	           Aluno aluno = instrutorLogado.consultarAluno(matricula);
+	                
+	           if(aluno != null) {
+	                	
+	              List<Treinos> treinos = aluno.getMeusTreinos();
+	                	
+	              for (Treinos treino : treinos) {
+	                		
+	                if (treino.getNome().equals(nomeTreino)) {
+	                	instrutorLogado.dissociarTreino(aluno, treino);
+	                	InstrutorController instrutorController = new InstrutorController();
+	                    instrutorController.atualizarDados(instrutorLogado);
+	                    
+	                    JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Treino--> " + nomeTreino +
+	                     "\n" + "Do aluno de matrícula " + matricula + " foi removido com sucesso!",
+	                     "Treino removido", JOptionPane.INFORMATION_MESSAGE);
+	                
+	                } else {
+	                    JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Treino não encontrado!",
+	                    "Erro", JOptionPane.ERROR_MESSAGE);
+	                  }  
+	              }
+	                	
+	           } else {
+	              JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Aluno não encontrado!",
+	            "Erro", JOptionPane.ERROR_MESSAGE);
+	             }			
+		 }                             
         });
 
         // Ação para o botão Cancelar

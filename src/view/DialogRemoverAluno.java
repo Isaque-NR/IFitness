@@ -63,9 +63,11 @@ public class DialogRemoverAluno extends JDialog {
         painelPrincipal.add(painelBotoes, gbc);
 
         // Ação do botão Remover
-        btnRemover.addActionListener(e -> {
+        btnRemover.addActionListener(new ActionListener () {
         	
-                String matricula = txtMatricula.getText().trim();
+        	@Override
+			public void actionPerformed(ActionEvent e) {
+        		String matricula = txtMatricula.getText().trim();
                 if(matricula.isEmpty()) {
                     JOptionPane.showMessageDialog(
                         DialogRemoverAluno.this,
@@ -91,8 +93,10 @@ public class DialogRemoverAluno extends JDialog {
                     dispose();
                 
                 } else {
-                    JOptionPane.showMessageDialog(this, "Matrícula do aluno inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
-                }    
+                    JOptionPane.showMessageDialog(DialogRemoverAluno.this, "Matrícula do aluno inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+					
+			}    
         });
 
         // Ação do botão cancelar

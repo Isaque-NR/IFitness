@@ -3,12 +3,22 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 
+import controller.InstrutorController;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import model.entities.Aluno;
+import model.entities.Instrutor;
+import model.fabrica.Fabrica;
+
 public class TelaCadastroAluno extends JFrame {
 
     private static final long serialVersionUID = 1L;
-
-    public TelaCadastroAluno() {
+    private Instrutor instrutorLogado;
+    public TelaCadastroAluno(Instrutor instrutorLogado) {
         super("IFitness");
+        this.instrutorLogado = instrutorLogado;
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
@@ -126,17 +136,24 @@ public class TelaCadastroAluno extends JFrame {
         btnCadastrar.setFont(new Font("Arial", Font.BOLD, 14));
         btnCadastrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnCadastrar.setPreferredSize(new Dimension(140, 35));
+        btnCadastrar.addActionListener(new ActionListener () {
+        	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Aluno novoAluno = Fabrica.getAluno(txtNome.getText(), (int) cbIdade.getSelectedItem(), 
+		        	    txtMatricula.getText(), (rbMasculino.isSelected()) ? "Masculino" : "Feminino", 
+		        	    Double.parseDouble(txtPeso.getText()) , Double.parseDouble(txtAltura.getText()), 
+		        	    txtLimitacoes.getText());
+				
+				instrutorLogado.addAlunoInstrutor(novoAluno);
+				InstrutorController instrutorController = new InstrutorController ();
+				instrutorController.atualizarDados(instrutorLogado);
+			}
+        });
         gbc.gridy++;
         painelPrincipal.add(btnCadastrar, gbc);
 
         painelPrincipal.add(Box.createVerticalStrut(10), gbc);
-    }
-
-    // Teste isolado
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new TelaCadastroAluno().setVisible(true);
-        });
     }
 }
 

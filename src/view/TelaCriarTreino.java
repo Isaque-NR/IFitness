@@ -112,15 +112,19 @@ public class TelaCriarTreino extends JFrame {
         rbMusculacao.setSelected(true);
 
         // Listeners para alternar CardLayout
-        ActionListener tipoListener = e -> {
-            if (rbMusculacao.isSelected()) {
-                cardLayout.show(panelCardLayout, "Musculação");
-            } else {
-                cardLayout.show(panelCardLayout, "Cardio");
-            }
+        ActionListener listener = new ActionListener () {
+            
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (rbMusculacao.isSelected()) {
+	                cardLayout.show(panelCardLayout, "Musculação");
+	            } else {
+	                cardLayout.show(panelCardLayout, "Cardio");
+	            }				
+			}
         };
-        rbMusculacao.addActionListener(tipoListener);
-        rbCardio.addActionListener(tipoListener);
+        rbMusculacao.addActionListener(listener);
+        rbCardio.addActionListener(listener);
 
         panelSuperior.add(rbMusculacao);
         panelSuperior.add(rbCardio);
@@ -159,7 +163,14 @@ public class TelaCriarTreino extends JFrame {
         btnNovoExercicio.setFont(new Font("Arial", Font.BOLD, 14));
         btnNovoExercicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnNovoExercicio.setPreferredSize(new Dimension(150, 35));
-        btnNovoExercicio.addActionListener(e -> adicionarExercicio());
+        btnNovoExercicio.addActionListener(new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				adicionarExercicio();				
+			}
+        	
+        });
 
         gbc.gridy++;
         gbc.weighty = 0;
@@ -189,7 +200,15 @@ public class TelaCriarTreino extends JFrame {
         btnPronto.setFont(new Font("Arial", Font.BOLD, 14));
         btnPronto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnPronto.setPreferredSize(new Dimension(150, 35));
-        btnPronto.addActionListener(e -> finalizarTreino());
+        btnPronto.addActionListener(new ActionListener () {
+        	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				finalizarTreino();
+				
+			}
+        });
+        
         painelPrincipal.add(btnPronto, gbc);
     }
     

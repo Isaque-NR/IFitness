@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
@@ -97,27 +99,32 @@ public class TelaLogin extends JFrame {
         btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnLogin.setPreferredSize(new Dimension(120, 35));
         gbc.gridy++;
-        btnLogin.addActionListener(e -> {
+        btnLogin.addActionListener(new ActionListener () {
         	
-        	String matricula = txtMatricula.getText().trim();
-            String senha = new String(txtSenha.getPassword()).trim();
-            
-            //fazer como uma exceção 
-            if (matricula.isEmpty() || senha.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            InstrutorController instrutorController = new InstrutorController();
-            Instrutor instrutorLogado = instrutorController.autenticarInstrutor(matricula, senha);
+        	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String matricula = txtMatricula.getText().trim();
+	            String senha = new String(txtSenha.getPassword()).trim();
+	            
+	            //fazer como uma exceção 
+	            if (matricula.isEmpty() || senha.isEmpty()) {
+	                JOptionPane.showMessageDialog(TelaLogin.this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            }
+	            
+	            InstrutorController instrutorController = new InstrutorController();
+	            Instrutor instrutorLogado = instrutorController.autenticarInstrutor(matricula, senha);
 
-            if (instrutorLogado != null) {
-                JOptionPane.showMessageDialog(this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
-                new TelaMenu(instrutorLogado).setVisible(true); // Abre a tela do menu com o instrutor logado
-                dispose(); // Fecha a tela de login
-            } else {
-                JOptionPane.showMessageDialog(this, "Matrícula ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
+	            if (instrutorLogado != null) {
+	                JOptionPane.showMessageDialog(TelaLogin.this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
+	                new TelaMenu(instrutorLogado).setVisible(true); // Abre a tela do menu com o instrutor logado
+	                dispose(); // Fecha a tela de login
+	            } else {
+	                JOptionPane.showMessageDialog(TelaLogin.this, "Matrícula ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
 
         });
         

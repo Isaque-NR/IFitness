@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import controller.InstrutorController;
@@ -124,22 +127,27 @@ public class TelaCadastroInstrutor extends JFrame {
         btnCadastrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnCadastrar.setPreferredSize(new Dimension(120, 35));
         
-        btnCadastrar.addActionListener(e -> {
-            String nome = txtNome.getText().trim();
-            String matricula = txtMatricula.getText().trim();
-            String senha = new String(txtSenha.getPassword()).trim();
-            int idade = (int) cbIdade.getSelectedItem();
+        btnCadastrar.addActionListener(new ActionListener () {
+            
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nome = txtNome.getText().trim();
+	            String matricula = txtMatricula.getText().trim();
+	            String senha = new String(txtSenha.getPassword()).trim();
+	            int idade = (int) cbIdade.getSelectedItem();
 
-            InstrutorController instrutorController = new InstrutorController();
-            boolean sucesso = instrutorController.cadastrarInstrutor(nome, idade, matricula, senha);
+	            InstrutorController instrutorController = new InstrutorController();
+	            boolean sucesso = instrutorController.cadastrarInstrutor(nome, idade, matricula, senha);
 
-            if (sucesso) {
-                JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                new TelaLogin().setVisible(true);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Matrícula já cadastrada!", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
+	            if (sucesso) {
+	                JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+	                new TelaLogin().setVisible(true);
+	                dispose();
+	            } else {
+	                JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, "Matrícula já cadastrada!", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
         });
 
         

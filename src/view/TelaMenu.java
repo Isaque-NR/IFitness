@@ -58,9 +58,13 @@ public class TelaMenu extends JFrame {
 
         JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
         JButton btnListarAlunos = new JButton("Listar Alunos");
-        btnListarAlunos.addActionListener(e -> {
-        	new TelaListaAlunos(instrutorLogado).setVisible(true);
-        	dispose();
+        btnListarAlunos.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaListaAlunos(instrutorLogado).setVisible(true);
+	        	dispose();				
+			}
         	
         });
         
