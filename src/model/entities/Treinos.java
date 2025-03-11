@@ -16,10 +16,10 @@ public class Treinos implements Serializable {
 	private String nome;
 	private List<Exercicio> exercicios;
 	
-	public Treinos(String nome) {
+	public Treinos(String nome, List<Exercicio> exercicios) {
 		if(Validadores.isNomeTreinoValid(nome)) {
 		this.nome=nome;
-		this.exercicios=new ArrayList<>();
+		this.exercicios=exercicios;
 		}else {
 			System.out.println("Treino Invalido");
 		}
@@ -43,10 +43,6 @@ public class Treinos implements Serializable {
 	
 	public void setExercicios(List<Exercicio> exercicios) {
 	    this.exercicios = exercicios;
-	}
-	
-	public void adicionarExercicio(Exercicio exercicio) {
-		exercicios.add(exercicio);
 	}
 
 	@Override

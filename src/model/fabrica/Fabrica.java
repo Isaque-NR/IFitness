@@ -1,5 +1,7 @@
 package model.fabrica;
 
+import java.util.List;
+
 import model.entities.*;
 
 public class Fabrica {
@@ -22,7 +24,7 @@ public class Fabrica {
 		return new Instrutor(nome, idade, matricula, senha);
 	}
 	
-	public static Treinos getTreino (String descricao) {
-		return new Treinos (descricao);
+	public static Treinos getTreino (String nome, List <Exercicio> exercicios) {
+		return new Treinos (nome,exercicios);
 	}
 }

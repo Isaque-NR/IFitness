@@ -47,7 +47,7 @@ public class TelaListaAlunos extends JFrame {
         
         List<Aluno> listaAlunos = instrutorLogado.getAlunos();
         
-     // Isso cria a matriz de dados da tabela com base na lista real do instrutor
+        // Isso cria a matriz de dados da tabela com base na lista real do instrutor
         Object[][] Alunos = new Object[listaAlunos.size()][3];
         
         //E aqui é feito o preencimento dos dados 

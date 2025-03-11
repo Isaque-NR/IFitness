@@ -16,9 +16,12 @@ public class TelaLogin extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private InstrutorController instrutorController;
 
 	public TelaLogin() {
         super("IFitness");
+        this.instrutorController = new InstrutorController ();
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setResizable(false);
@@ -107,13 +110,12 @@ public class TelaLogin extends JFrame {
 				String matricula = txtMatricula.getText().trim();
 	            String senha = new String(txtSenha.getPassword()).trim();
 	            
-	            //fazer como uma exceção 
+	          
 	            if (matricula.isEmpty() || senha.isEmpty()) {
 	                JOptionPane.showMessageDialog(TelaLogin.this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
 	                return;
 	            }
 	            
-	            InstrutorController instrutorController = new InstrutorController();
 	            Instrutor instrutorLogado = instrutorController.autenticarInstrutor(matricula, senha);
 
 	            if (instrutorLogado != null) {
@@ -182,12 +184,5 @@ public class TelaLogin extends JFrame {
         painelImagem.add(lblImagem, BorderLayout.CENTER);
 
         return painelImagem;
-    }
-    
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new TelaLogin().setVisible(true);
-        });
-    }
-    
+    }    
 }

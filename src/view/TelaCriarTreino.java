@@ -5,18 +5,20 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+
+import controller.InstrutorController;
 import model.fabrica.Fabrica;
 import model.entities.Instrutor;
+import model.entities.Aluno;
 import model.entities.Exercicio;
 
 public class TelaCriarTreino extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    private Instrutor instrutorLogado;
 
     // Componentes principais
     private JTextField tfNomeTreino;
-    private JComboBox<String> cbAlunos; 
+    private JComboBox<Aluno> cbAlunos; 
     private JRadioButton rbMusculacao, rbCardio;
     private ButtonGroup bgTipoExercicio;
 
@@ -38,10 +40,12 @@ public class TelaCriarTreino extends JFrame {
     // Área para exibir exercícios adicionados
     private JTextArea taExercicios;
     
+    private Instrutor instrutorLogado;
     private List <Exercicio> listaExercicios = new ArrayList<>();
     
-    public TelaCriarTreino() {
+    public TelaCriarTreino(Instrutor instrutorLogado) {
         super("IFitness");
+        this.instrutorLogado = instrutorLogado;
         inicializarComponentes();       
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
@@ -85,13 +89,37 @@ public class TelaCriarTreino extends JFrame {
         lblAluno.setFont(new Font("Arial", Font.BOLD, 16));
         panelSuperior.add(lblAluno);
 
-        // Exemplo estático de alunos
-        cbAlunos = new JComboBox<>(new String[]{
-            "João (20231001)",
-            "Maria (20231002)",
-            "Carlos (20231003)"
-        });
+        // ComboBox de selçao do aluno a ter exercício adicionado
+        cbAlunos = new JComboBox<>();
+        
+        // Criar um modelo para a ComboBox
+        DefaultComboBoxModel<Aluno> modeloCombo = new DefaultComboBoxModel<>();
+        
+        for (Aluno aluno : instrutorLogado.getAlunos()) {
+            modeloCombo.addElement(aluno);
+        }
+
+        // Definir o modelo na ComboBox
+        cbAlunos.setModel(modeloCombo);
         cbAlunos.setFont(new Font("Arial", Font.PLAIN, 14));
+        // Personalizar a exibição dos itens na ComboBox 
+        cbAlunos.setRenderer(new DefaultListCellRenderer() {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, 
+            		                                    boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof Aluno) {
+                    Aluno aluno = (Aluno) value;
+                    setText(aluno.getNome() + " (" + aluno.getMatricula() + ")");
+                }
+                return this;
+            }
+        });
         panelSuperior.add(cbAlunos);
 
         // Tipo de Exercício (RadioButtons)
@@ -169,6 +197,12 @@ public class TelaCriarTreino extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (tfNomeTreino.getText().isEmpty() || cbAlunos.getSelectedItem() == null) {
+		            JOptionPane.showMessageDialog(TelaCriarTreino.this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+		            return;
+		        }
+				tfNomeTreino.setEnabled(false);
+				cbAlunos.setEnabled(false);
 				adicionarExercicio();				
 			}
         	
@@ -300,16 +334,14 @@ public class TelaCriarTreino extends JFrame {
             int repet = Integer.parseInt(tfRepeticoes.getText().trim());
             int series = Integer.parseInt(tfSeries.getText().trim());
             
-            Exercicio exercicio = Fabrica.getExercicioMusculacao(nome, carga, repet, series);
-            listaExercicios.add(exercicio);
+            listaExercicios.add(Fabrica.getExercicioMusculacao(nome, carga, repet, series));
             
         } else {
             String nome = tfNomeExercicioCardio.getText().trim();
             int duracao = Integer.parseInt(tfDuracao.getText().trim());
             String intensidade = tfIntensidade.getText().trim();
-
-            Exercicio exercicio = Fabrica.getExercicioCardio(nome, duracao, intensidade);
-            listaExercicios.add(exercicio);
+           
+            listaExercicios.add(Fabrica.getExercicioCardio(nome, duracao, intensidade));
         }
          
         atualizarTextArea(listaExercicios);
@@ -330,26 +362,23 @@ public class TelaCriarTreino extends JFrame {
     }
 
     private void finalizarTreino() {
-        String nomeTreino = tfNomeTreino.getText().trim();
-        String alunoSelecionado = (String) cbAlunos.getSelectedItem();
-        
-        if (nomeTreino.isEmpty() || alunoSelecionado == null) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (listaExercicios.isEmpty()) {
+    	
+    	if (listaExercicios.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Adicione ao menos um exercício!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+    	
+    	InstrutorController instrutorController = new InstrutorController ();
+    	Aluno aluno = (Aluno) cbAlunos.getSelectedItem();
+    	instrutorLogado.associarTreino(aluno, instrutorController.CriarTreino(tfNomeTreino.getText(), 
+    			                       listaExercicios));
+    	
+        instrutorController.atualizarDados(instrutorLogado);
              
-        dispose(); // fecha a tela
+        dispose(); 
     }
     
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new TelaCriarTreino().setVisible(true);
-        });
-    }
 }
+
 
 
