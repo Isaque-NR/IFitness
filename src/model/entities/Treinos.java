@@ -51,7 +51,7 @@ public class Treinos implements Serializable {
 
 	@Override
 	public String toString() {
-		return "nome:" + nome + ", exercicios: " + exercicios.toString();
+		return "Nome:" + nome + "\n" + " Exercicios: " + exercicios.toString();
 	}
 	
 }

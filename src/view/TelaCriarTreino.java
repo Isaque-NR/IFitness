@@ -5,12 +5,14 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
-
+import model.fabrica.Fabrica;
+import model.entities.Instrutor;
 import model.entities.Exercicio;
 
 public class TelaCriarTreino extends JFrame {
 
     private static final long serialVersionUID = 1L;
+    private Instrutor instrutorLogado;
 
     // Componentes principais
     private JTextField tfNomeTreino;
@@ -298,7 +300,7 @@ public class TelaCriarTreino extends JFrame {
             int repet = Integer.parseInt(tfRepeticoes.getText().trim());
             int series = Integer.parseInt(tfSeries.getText().trim());
             
-            Exercicio exercicio = new Exercicio(nome, carga, repet, series);
+            Exercicio exercicio = Fabrica.getExercicioMusculacao(nome, carga, repet, series);
             listaExercicios.add(exercicio);
             
         } else {
@@ -306,7 +308,7 @@ public class TelaCriarTreino extends JFrame {
             int duracao = Integer.parseInt(tfDuracao.getText().trim());
             String intensidade = tfIntensidade.getText().trim();
 
-            Exercicio exercicio = new Exercicio(nome, duracao, intensidade);
+            Exercicio exercicio = Fabrica.getExercicioCardio(nome, duracao, intensidade);
             listaExercicios.add(exercicio);
         }
          

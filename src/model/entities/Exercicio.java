@@ -97,8 +97,8 @@ public class Exercicio implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Exercicio [nome=" + nome + ", carga=" + carga + ", repeticoes=" + repeticoes + ", series=" + series
-				+ ", duracao=" + duracao + ", intensidade=" + intensidade + "]";
+		return " - " + nome + ": " + series + "x" + repeticoes + " reps" + 
+	"Duracao: " + duracao + "Intensidade:" + intensidade + "\n";
 	}
 	
 	
