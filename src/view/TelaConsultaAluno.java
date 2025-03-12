@@ -95,6 +95,14 @@ public class TelaConsultaAluno extends JFrame {
         btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
         btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnVoltar.setPreferredSize(new Dimension(120, 25));
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+             new TelaMenu(instrutorLogado).setVisible(true);
+             dispose();
+            }
+        });
+    
           
         panelVoltar.add(btnVoltar);
         

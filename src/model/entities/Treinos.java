@@ -5,7 +5,7 @@ import java.util.List;
 import model.util.Validadores;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class Treinos implements Serializable {
 	
@@ -47,7 +47,7 @@ public class Treinos implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Nome:" + nome + "\n" + " Exercicios: " + exercicios.toString();
+		return "Nome: " + nome + "\n" + " Exercicios: \n" + exercicios.toString();
 	}
 	
 }

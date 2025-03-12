@@ -357,7 +357,7 @@ public class TelaCriarTreino extends JFrame {
     private void atualizarTextArea(List <Exercicio> listaExercicios) {
         taExercicios.setText("Exercícios adicionados:\n");
         for (Exercicio ex : listaExercicios) {
-            taExercicios.append(" - " + ex.toString() + "\n");
+            taExercicios.append(ex.toString() + "\n");
         }
     }
 
@@ -374,7 +374,7 @@ public class TelaCriarTreino extends JFrame {
     			                       listaExercicios));
     	
         instrutorController.atualizarDados(instrutorLogado);
-             
+        new TelaMenu(instrutorLogado).setVisible(true);     
         dispose(); 
     }
     

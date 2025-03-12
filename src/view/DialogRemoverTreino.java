@@ -3,7 +3,8 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.List;
+
+import java.util.Iterator;
 
 import model.entities.Aluno;
 import model.entities.Instrutor;
@@ -91,35 +92,38 @@ public class DialogRemoverTreino extends JDialog {
 	             return;
 	          }
 	                               
-	           Aluno aluno = instrutorLogado.consultarAluno(matricula);
+	           	Aluno aluno = instrutorLogado.consultarAluno(matricula);
 	                
-	           if(aluno != null) {
-	                	
-	              List<Treinos> treinos = aluno.getMeusTreinos();
-	                	
-	              for (Treinos treino : treinos) {
-	                		
-	                if (treino.getNome().equals(nomeTreino)) {
-	                	instrutorLogado.dissociarTreino(aluno, treino);
-	                	InstrutorController instrutorController = new InstrutorController();
-	                    instrutorController.atualizarDados(instrutorLogado);
-	                    
-	                    JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Treino--> " + nomeTreino +
-	                     "\n" + "Do aluno de matrícula " + matricula + " foi removido com sucesso!",
-	                     "Treino removido", JOptionPane.INFORMATION_MESSAGE);
-	                
-	                } else {
-	                    JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Treino não encontrado!",
-	                    "Erro", JOptionPane.ERROR_MESSAGE);
-	                  }  
-	              }
-	                	
-	           } else {
-	              JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Aluno não encontrado!",
-	            "Erro", JOptionPane.ERROR_MESSAGE);
-	             }			
-		 }                             
-        });
+	           	if(aluno != null) {	                	                           
+	              
+	              Iterator<Treinos> iterator = aluno.getMeusTreinos().iterator();
+	              while (iterator.hasNext()) {
+	                  Treinos treino = iterator.next();
+	                  if (treino.getNome().equals(nomeTreino)) {
+	                      
+	  	                instrutorLogado.dissociarTreino(aluno, treino);
+	  	                InstrutorController instrutorController = new InstrutorController();
+	  	                instrutorController.atualizarDados(instrutorLogado);
+	  	                    
+	  	                JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Treino--> " + nomeTreino +
+	  	                "\n" + "Do aluno de matrícula " + matricula + " foi removido com sucesso!",
+	  	                "Treino removido", JOptionPane.INFORMATION_MESSAGE);
+	  	                break;
+	  	               } else {
+	  	                 JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Treino não encontrado!",
+	  	                 "Erro", JOptionPane.ERROR_MESSAGE);
+	  	                 }  
+	  	              
+	  	                	
+	  	           } 
+	             
+               } else {
+	  	          JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Aluno não encontrado!",
+	  	          "Erro", JOptionPane.ERROR_MESSAGE);
+	  	          }
+	     }
+           
+    });
 
         // Ação para o botão Cancelar
         btnCancelar.addActionListener(new ActionListener() {

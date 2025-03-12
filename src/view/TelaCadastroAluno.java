@@ -140,7 +140,7 @@ public class TelaCadastroAluno extends JFrame {
         	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Aluno novoAluno = Fabrica.getAluno(txtNome.getText(), (int) cbIdade.getSelectedItem(), 
+				Aluno novoAluno = Fabrica.getAluno(txtNome.getText(), 12+cbIdade.getSelectedIndex(), 
 		        	    txtMatricula.getText(), (rbMasculino.isSelected()) ? "Masculino" : "Feminino", 
 		        	    Double.parseDouble(txtPeso.getText()) , Double.parseDouble(txtAltura.getText()), 
 		        	    txtLimitacoes.getText());
@@ -148,6 +148,8 @@ public class TelaCadastroAluno extends JFrame {
 				instrutorLogado.addAlunoInstrutor(novoAluno);
 				InstrutorController instrutorController = new InstrutorController ();
 				instrutorController.atualizarDados(instrutorLogado);
+				new TelaMenu(instrutorLogado).setVisible(true);
+				dispose();
 			}
         });
         gbc.gridy++;

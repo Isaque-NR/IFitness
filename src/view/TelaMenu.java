@@ -57,6 +57,13 @@ public class TelaMenu extends JFrame {
         painelBotoes.setOpaque(false);
 
         JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
+        btnCadastrarAluno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TelaCadastroAluno(instrutorLogado).setVisible(true);
+                dispose();
+            }
+        });
         JButton btnListarAlunos = new JButton("Listar Alunos");
         btnListarAlunos.addActionListener(new ActionListener() {
 
@@ -69,6 +76,13 @@ public class TelaMenu extends JFrame {
         });
         
         JButton btnConsultarAluno = new JButton("Consultar Aluno");
+        btnConsultarAluno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TelaConsultaAluno(instrutorLogado).setVisible(true);
+                dispose();
+            }
+        });
         JButton btnRemoverAluno = new JButton("Remover Aluno");
         btnRemoverAluno.addActionListener(new ActionListener() {
             @Override
@@ -79,6 +93,16 @@ public class TelaMenu extends JFrame {
         });
         
         JButton btnCriarTreino = new JButton("Criar Treino");
+        btnCriarTreino.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaCriarTreino(instrutorLogado).setVisible(true);
+				dispose();
+			}
+        	
+        });
+        
         JButton btnApagarTreino = new JButton("Apagar Treino");
         btnApagarTreino.addActionListener(new ActionListener() {
             @Override
