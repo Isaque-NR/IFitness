@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import controller.InstrutorController;
 import model.entities.Instrutor;
 
 public class TelaMenu extends JFrame {
@@ -16,10 +17,13 @@ public class TelaMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private Instrutor instrutorLogado;
-	public TelaMenu(Instrutor instrutorLogado) {
+	private InstrutorController instrutorController;
+	
+	public TelaMenu(Instrutor instrutorLogado, InstrutorController instrutorController) {
         super("IFitness");
         inicializarComponentes();
         this.instrutorLogado = instrutorLogado;
+        this.instrutorController = instrutorController;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +64,7 @@ public class TelaMenu extends JFrame {
         btnCadastrarAluno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TelaCadastroAluno(instrutorLogado).setVisible(true);
+                new TelaCadastroAluno(instrutorLogado,instrutorController).setVisible(true);
                 dispose();
             }
         });
@@ -69,7 +73,7 @@ public class TelaMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new TelaListaAlunos(instrutorLogado).setVisible(true);
+				new TelaListaAlunos(instrutorLogado, instrutorController).setVisible(true);
 	        	dispose();				
 			}
         	
@@ -79,7 +83,7 @@ public class TelaMenu extends JFrame {
         btnConsultarAluno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TelaConsultaAluno(instrutorLogado).setVisible(true);
+                new TelaConsultaAluno(instrutorLogado, instrutorController).setVisible(true);
                 dispose();
             }
         });
@@ -87,7 +91,7 @@ public class TelaMenu extends JFrame {
         btnRemoverAluno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DialogRemoverAluno dialog = new DialogRemoverAluno(TelaMenu.this, instrutorLogado);
+                DialogRemoverAluno dialog = new DialogRemoverAluno(TelaMenu.this, instrutorLogado, instrutorController);
                 dialog.setVisible(true);
             }
         });
@@ -97,7 +101,7 @@ public class TelaMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new TelaCriarTreino(instrutorLogado).setVisible(true);
+				new TelaCriarTreino(instrutorLogado, instrutorController).setVisible(true);
 				dispose();
 			}
         	
@@ -107,7 +111,7 @@ public class TelaMenu extends JFrame {
         btnApagarTreino.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DialogRemoverTreino dialog = new DialogRemoverTreino(TelaMenu.this, instrutorLogado);
+                DialogRemoverTreino dialog = new DialogRemoverTreino(TelaMenu.this, instrutorLogado, instrutorController);
                 dialog.setVisible(true);
                 
             }

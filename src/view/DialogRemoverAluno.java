@@ -13,10 +13,12 @@ public class DialogRemoverAluno extends JDialog {
     private static final long serialVersionUID = 1L;
     private JTextField txtMatricula;
     private Instrutor instrutorLogado;
+    private InstrutorController instrutorController;
 
-    public DialogRemoverAluno(Frame telaMenu, Instrutor instrutorLogado) {
+    public DialogRemoverAluno(Frame telaMenu, Instrutor instrutorLogado, InstrutorController instrutorController) {
         super(telaMenu, "Remover Aluno", true);
         this.instrutorLogado = instrutorLogado;
+        this.instrutorController = instrutorController;
         inicializarComponentes();
         setPreferredSize(new Dimension(420,250));
         pack(); 
@@ -81,7 +83,6 @@ public class DialogRemoverAluno extends JDialog {
                 Aluno alunoRemovido = instrutorLogado.consultarAluno(matricula);
                 if(alunoRemovido != null) { 
                 instrutorLogado.removerAluno(alunoRemovido);
-                InstrutorController instrutorController = new InstrutorController();
                 instrutorController.atualizarDados(instrutorLogado);
                 
                 JOptionPane.showMessageDialog(

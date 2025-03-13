@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
+import controller.InstrutorController;
+
 import java.util.List;
 
 import model.entities.Aluno;
@@ -18,10 +21,12 @@ public class TelaListaAlunos extends JFrame {
     private JTable tabelaAlunos;
     private DefaultTableModel modeloTabela;
     private Instrutor instrutorLogado;
+    private InstrutorController instrutorController;
 
-    public TelaListaAlunos(Instrutor instrutorLogado) {
+    public TelaListaAlunos(Instrutor instrutorLogado, InstrutorController instrutorController) {
         super("IFitness");
         this.instrutorLogado = instrutorLogado;
+        this.instrutorController = instrutorController;
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
@@ -100,7 +105,7 @@ public class TelaListaAlunos extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new TelaMenu(instrutorLogado).setVisible(true);
+				new TelaMenu(instrutorLogado, instrutorController).setVisible(true);
 	        	dispose();				
 			}
         	

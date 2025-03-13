@@ -15,6 +15,7 @@ import model.entities.Exercicio;
 public class TelaCriarTreino extends JFrame {
 
     private static final long serialVersionUID = 1L;
+    private InstrutorController instrutorController;
 
     // Componentes principais
     private JTextField tfNomeTreino;
@@ -43,9 +44,10 @@ public class TelaCriarTreino extends JFrame {
     private Instrutor instrutorLogado;
     private List <Exercicio> listaExercicios = new ArrayList<>();
     
-    public TelaCriarTreino(Instrutor instrutorLogado) {
+    public TelaCriarTreino(Instrutor instrutorLogado, InstrutorController instrutorController) {
         super("IFitness");
         this.instrutorLogado = instrutorLogado;
+        this.instrutorController = instrutorController;
         inicializarComponentes();       
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
@@ -258,7 +260,7 @@ public class TelaCriarTreino extends JFrame {
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-             new TelaMenu(instrutorLogado).setVisible(true);
+             new TelaMenu(instrutorLogado, instrutorController).setVisible(true);
              dispose();
             }
         });
@@ -390,13 +392,12 @@ public class TelaCriarTreino extends JFrame {
             return;
         }
     	
-    	InstrutorController instrutorController = new InstrutorController ();
     	Aluno aluno = (Aluno) cbAlunos.getSelectedItem();
     	instrutorLogado.associarTreino(aluno, instrutorController.CriarTreino(tfNomeTreino.getText(), 
     			                       listaExercicios));
     	
         instrutorController.atualizarDados(instrutorLogado);
-        new TelaMenu(instrutorLogado).setVisible(true);     
+        new TelaMenu(instrutorLogado, instrutorController).setVisible(true);     
         dispose(); 
     }
     

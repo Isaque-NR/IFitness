@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import controller.InstrutorController;
 import model.entities.Instrutor;
 import model.entities.Aluno;
 import model.entities.Treinos;
@@ -14,10 +15,12 @@ public class TelaConsultaAluno extends JFrame {
     private JPanel panelDados;
     private JTextField txtMatricula;
     private Instrutor instrutorLogado;
+    private InstrutorController instrutorController;
 
-    public TelaConsultaAluno(Instrutor instrutorLogado) {
+    public TelaConsultaAluno(Instrutor instrutorLogado, InstrutorController instrutorController) {
         super("IFitness");
         this.instrutorLogado = instrutorLogado;
+        this.instrutorController = instrutorController;
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
@@ -98,7 +101,7 @@ public class TelaConsultaAluno extends JFrame {
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-             new TelaMenu(instrutorLogado).setVisible(true);
+             new TelaMenu(instrutorLogado, instrutorController).setVisible(true);
              dispose();
             }
         });

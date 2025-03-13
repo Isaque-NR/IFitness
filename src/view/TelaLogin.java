@@ -10,6 +10,7 @@ import javax.swing.*;
 import controller.InstrutorController;
 import model.entities.Instrutor;
 
+
 public class TelaLogin extends JFrame {
 
     /**
@@ -19,9 +20,9 @@ public class TelaLogin extends JFrame {
 	
 	private InstrutorController instrutorController;
 
-	public TelaLogin() {
+	public TelaLogin(InstrutorController instrutorController) {
         super("IFitness");
-        this.instrutorController = new InstrutorController ();
+        this.instrutorController = instrutorController;
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setResizable(false);
@@ -120,7 +121,7 @@ public class TelaLogin extends JFrame {
 
 	            if (instrutorLogado != null) {
 	                JOptionPane.showMessageDialog(TelaLogin.this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
-	                new TelaMenu(instrutorLogado).setVisible(true); // Abre a tela do menu com o instrutor logado
+	                new TelaMenu(instrutorLogado,instrutorController).setVisible(true); // Abre a tela do menu com o instrutor logado
 	                dispose(); // Fecha a tela de login
 	            } else {
 	                JOptionPane.showMessageDialog(TelaLogin.this, "Matrícula ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -141,7 +142,7 @@ public class TelaLogin extends JFrame {
         lblCadastro.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            	new TelaCadastroInstrutor().setVisible(true);
+            	new TelaCadastroInstrutor(instrutorController).setVisible(true);
                 dispose();
             }
         });

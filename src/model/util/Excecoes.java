@@ -4,9 +4,13 @@ import javax.swing.*;
 
 public class Excecoes extends Exception{	
 	
-	public void excecaoM(String mensagem) {
-		JFrame f = new JFrame("Erro");
-		JOptionPane.showMessageDialog(f,mensagem,"ERRO",JOptionPane.ERROR_MESSAGE);
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Excecoes(JFrame tela, String mensagem) {
+		
+	JOptionPane.showMessageDialog(tela, mensagem, "Algo deu errado :(", JOptionPane.ERROR_MESSAGE);	}
 
 }

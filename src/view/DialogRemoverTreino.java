@@ -17,12 +17,14 @@ public class DialogRemoverTreino extends JDialog {
     private JTextField txtMatricula;
     private JTextField txtNomeTreino;
     private Instrutor instrutorLogado;
+    private InstrutorController instrutorController;
     
 
-    public DialogRemoverTreino(Frame telaMenu, Instrutor instrutorLogado) {
+    public DialogRemoverTreino(Frame telaMenu, Instrutor instrutorLogado, InstrutorController instrutorController) {
         super(telaMenu, "Remover Treino", true);
         inicializarComponentes();
         this.instrutorLogado = instrutorLogado;
+        this.instrutorController = instrutorController;
         setPreferredSize(new Dimension(420,250));
         pack();
         setLocationRelativeTo(telaMenu);
@@ -102,7 +104,6 @@ public class DialogRemoverTreino extends JDialog {
 	                  if (treino.getNome().equals(nomeTreino)) {
 	                      
 	  	                instrutorLogado.dissociarTreino(aluno, treino);
-	  	                InstrutorController instrutorController = new InstrutorController();
 	  	                instrutorController.atualizarDados(instrutorLogado);
 	  	                    
 	  	                JOptionPane.showMessageDialog(DialogRemoverTreino.this, "Treino--> " + nomeTreino +

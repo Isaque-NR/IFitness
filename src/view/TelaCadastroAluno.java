@@ -16,9 +16,12 @@ public class TelaCadastroAluno extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private Instrutor instrutorLogado;
-    public TelaCadastroAluno(Instrutor instrutorLogado) {
+    private InstrutorController instrutorController;
+    
+    public TelaCadastroAluno(Instrutor instrutorLogado, InstrutorController instrutorController) {
         super("IFitness");
         this.instrutorLogado = instrutorLogado;
+        this.instrutorController = instrutorController;
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
@@ -146,9 +149,8 @@ public class TelaCadastroAluno extends JFrame {
 		        	    txtLimitacoes.getText());
 				
 				instrutorLogado.addAlunoInstrutor(novoAluno);
-				InstrutorController instrutorController = new InstrutorController ();
 				instrutorController.atualizarDados(instrutorLogado);
-				new TelaMenu(instrutorLogado).setVisible(true);
+				new TelaMenu(instrutorLogado, instrutorController).setVisible(true);
 				dispose();
 			}
         });
@@ -166,7 +168,7 @@ public class TelaCadastroAluno extends JFrame {
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-             new TelaMenu(instrutorLogado).setVisible(true);
+             new TelaMenu(instrutorLogado, instrutorController).setVisible(true);
              dispose();
             }
         });

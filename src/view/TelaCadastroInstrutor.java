@@ -14,9 +14,11 @@ public class TelaCadastroInstrutor extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private InstrutorController instrutorController;
 
-	public TelaCadastroInstrutor() {
+	public TelaCadastroInstrutor(InstrutorController instrutorController) {
         super("IFitness");
+        this.instrutorController = instrutorController;
         inicializarComponentes();
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setResizable(false);
@@ -126,6 +128,29 @@ public class TelaCadastroInstrutor extends JFrame {
         btnCadastrar.setFont(new Font("Arial", Font.BOLD, 14));
         btnCadastrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnCadastrar.setPreferredSize(new Dimension(120, 35));
+        painelCadastro.add(btnCadastrar, gbc);
+        
+        gbc.gridy++;
+        JButton btnVoltar = new JButton("Voltar");
+        btnVoltar.setBackground(new Color(18,167,60));
+        btnVoltar.setForeground(Color.WHITE);
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setBorderPainted(true);
+        btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
+        btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnVoltar.setPreferredSize(new Dimension(140, 35));
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+             new TelaLogin(instrutorController).setVisible(true);
+             dispose();
+            }
+        });
+        
+        gbc.gridy++;
+        gbc.weighty = 0;
+        gbc.anchor = GridBagConstraints.SOUTH;
+        painelCadastro.add(btnVoltar, gbc);
         
         btnCadastrar.addActionListener(new ActionListener () {
             
@@ -136,12 +161,11 @@ public class TelaCadastroInstrutor extends JFrame {
 	            String senha = new String(txtSenha.getPassword()).trim();
 	            int idade = (int) cbIdade.getSelectedItem();
 
-	            InstrutorController instrutorController = new InstrutorController();
 	            boolean sucesso = instrutorController.cadastrarInstrutor(nome, idade, matricula, senha);
 
 	            if (sucesso) {
 	                JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-	                new TelaLogin().setVisible(true);
+	                new TelaLogin(instrutorController).setVisible(true);
 	                dispose();
 	            } else {
 	                JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, "Matrícula já cadastrada!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -149,9 +173,6 @@ public class TelaCadastroInstrutor extends JFrame {
 				
 			}
         });
-
-        
-        painelCadastro.add(btnCadastrar, gbc);
 
         gbc.gridy++;
         gbc.weighty = 1;
