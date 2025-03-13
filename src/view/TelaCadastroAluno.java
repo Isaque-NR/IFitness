@@ -154,6 +154,27 @@ public class TelaCadastroAluno extends JFrame {
         });
         gbc.gridy++;
         painelPrincipal.add(btnCadastrar, gbc);
+        
+        JButton btnVoltar = new JButton("Voltar");
+        btnVoltar.setBackground(new Color(18,167,60));
+        btnVoltar.setForeground(Color.WHITE);
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setBorderPainted(true);
+        btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
+        btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnVoltar.setPreferredSize(new Dimension(140, 35));
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+             new TelaMenu(instrutorLogado).setVisible(true);
+             dispose();
+            }
+        });
+
+        gbc.gridy++;
+        gbc.weighty = 0;
+        gbc.anchor = GridBagConstraints.SOUTH;
+        painelPrincipal.add(btnVoltar, gbc);
 
         painelPrincipal.add(Box.createVerticalStrut(10), gbc);
     }

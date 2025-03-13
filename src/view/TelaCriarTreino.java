@@ -207,12 +207,12 @@ public class TelaCriarTreino extends JFrame {
 			}
         	
         });
-
+        
         gbc.gridy++;
         gbc.weighty = 0;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
-        painelPrincipal.add(btnNovoExercicio, gbc);
+        painelPrincipal.add(btnNovoExercicio, gbc);   
 
         // Área de exibir exercícios adicionados 
         gbc.gridy++;
@@ -227,7 +227,7 @@ public class TelaCriarTreino extends JFrame {
         gbc.gridy++;
         gbc.weighty = 0;
         gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.anchor = GridBagConstraints.NORTH;
         JButton btnPronto = new JButton("Pronto");
         btnPronto.setBackground(new Color(18,167,60));
         btnPronto.setForeground(Color.WHITE);
@@ -246,6 +246,28 @@ public class TelaCriarTreino extends JFrame {
         });
         
         painelPrincipal.add(btnPronto, gbc);
+        
+        JButton btnVoltar = new JButton("Voltar");
+        btnVoltar.setBackground(new Color(18,167,60));
+        btnVoltar.setForeground(Color.WHITE);
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setBorderPainted(true);
+        btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
+        btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnVoltar.setPreferredSize(new Dimension(150, 35));
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+             new TelaMenu(instrutorLogado).setVisible(true);
+             dispose();
+            }
+        });
+
+        gbc.gridy++;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.SOUTH;
+        painelPrincipal.add(btnVoltar, gbc);
     }
     
     private JPanel criarPanelMusculacao() {
