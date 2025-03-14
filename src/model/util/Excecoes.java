@@ -9,8 +9,10 @@ public class Excecoes extends Exception{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Excecoes(JFrame tela, String mensagem) {
+	public Excecoes(String mensagem) {
 		
-	JOptionPane.showMessageDialog(tela, mensagem, "Algo deu errado :(", JOptionPane.ERROR_MESSAGE);	}
+	super(mensagem);
+	
+	}
 
 }

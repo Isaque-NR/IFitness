@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import controller.InstrutorController;
 import model.entities.Instrutor;
+import model.util.Excecoes;
 
 
 public class TelaLogin extends JFrame {
@@ -79,6 +80,7 @@ public class TelaLogin extends JFrame {
         txtMatricula.setPreferredSize(new Dimension(120, 30));
         gbc.gridy++;
         painelLogin.add(txtMatricula, gbc);
+        
 
         // Linha 3
         JLabel lblSenha = new JLabel("Senha:");
@@ -104,28 +106,11 @@ public class TelaLogin extends JFrame {
         btnLogin.setPreferredSize(new Dimension(120, 35));
         gbc.gridy++;
         btnLogin.addActionListener(new ActionListener () {
-        	
-        	
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String matricula = txtMatricula.getText().trim();
-	            String senha = new String(txtSenha.getPassword()).trim();
-	            
-	          
-	            if (matricula.isEmpty() || senha.isEmpty()) {
-	                JOptionPane.showMessageDialog(TelaLogin.this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-	                return;
-	            }
-	            
-	            Instrutor instrutorLogado = instrutorController.autenticarInstrutor(matricula, senha);
-
-	            if (instrutorLogado != null) {
-	                JOptionPane.showMessageDialog(TelaLogin.this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
-	                new TelaMenu(instrutorLogado,instrutorController).setVisible(true); // Abre a tela do menu com o instrutor logado
-	                dispose(); // Fecha a tela de login
-	            } else {
-	                JOptionPane.showMessageDialog(TelaLogin.this, "Matrícula ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
-	            }
+		        String senha = new String(txtSenha.getPassword()).trim();
+				tentarLogin(matricula,senha);
 				
 			}
 
@@ -154,8 +139,44 @@ public class TelaLogin extends JFrame {
         painelLogin.add(Box.createVerticalStrut(10), gbc);
 
         return painelLogin;
+        
     }
-
+    
+    private void tentarLogin(String matricula,String senha){
+     try {
+    	//String matricula = txtMatricula.getText().trim();
+       //String senha = new String(txtSenha.getPassword()).trim();
+    	 
+        if (matricula.isEmpty() && senha.isEmpty()) { // OK
+        	throw new Excecoes("Preencha todos os campos!");
+            //JOptionPane.showMessageDialog(TelaLogin.this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            //return;
+        }
+        if(matricula.isEmpty()){ // OK
+         	throw new Excecoes("Digite a Matricula!");
+         }
+    	 
+    	 if (senha.isEmpty()) { // OK
+    		 throw new Excecoes("Insira a senha!");
+    	 }
+        Instrutor instrutorLogado = instrutorController.autenticarInstrutor(matricula, senha);
+  
+        if (instrutorLogado != null) { 
+            JOptionPane.showMessageDialog(TelaLogin.this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
+            new TelaMenu(instrutorLogado,instrutorController).setVisible(true); // Abre a tela do menu com o instrutor logado
+            dispose(); // Fecha a tela de login
+            
+        } else { // NAO FUNCIONO A EXCECAO
+        	System.out.println("teste");
+        	throw new Excecoes("Instrutor não Cadastrado!");
+            ///JOptionPane.showMessageDialog(TelaLogin.this, "Matrícula ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }	
+     }catch(Excecoes e){
+    	 JOptionPane.showMessageDialog(TelaLogin.this, e.getMessage(), "Algo deu Errado... :(",JOptionPane.ERROR_MESSAGE);
+     }
+    }
+    
+    
     private JPanel criarPainelImagem() {
         JPanel painelImagem = new JPanel(new BorderLayout());
         painelImagem.setBackground(Color.WHITE);
