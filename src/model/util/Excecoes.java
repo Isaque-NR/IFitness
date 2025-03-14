@@ -1,7 +1,5 @@
 package model.util;
 
-import javax.swing.*;
-
 public class Excecoes extends Exception{	
 	
 	/**

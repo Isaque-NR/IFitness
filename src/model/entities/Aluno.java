@@ -2,6 +2,8 @@ package model.entities;
 
 import java.util.List;
 import java.io.Serializable;
+
+import model.util.Excecoes;
 import model.util.Validadores;
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ public class Aluno extends Usuario implements Serializable {
 	private List<Treinos> meusTreinos;
 	
 	public Aluno(String nome, int idade, String matricula, String sexo, double peso, double altura,
-	String limitacoesFisicasOuSaude){
+	String limitacoesFisicasOuSaude) throws Excecoes{
 		super(nome,idade,matricula);
 		if(Validadores.isSexoValid(sexo) && Validadores.isPesoValid(peso) && Validadores.isAlturaValid(altura) &&
 		   Validadores.isLimitacoesValid(limitacoesFisicasOuSaude)) {
@@ -28,7 +30,7 @@ public class Aluno extends Usuario implements Serializable {
 		this.limitacoesFisicasOuSaude = limitacoesFisicasOuSaude;
 		this.meusTreinos=new ArrayList<>();
 		}else {
-			System.out.println("Aluno Invalido");
+			throw new Excecoes ("Aluno inválido");
 		}
 	}
 

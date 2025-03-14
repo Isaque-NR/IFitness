@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import model.entities.Aluno;
 import model.entities.Instrutor;
 import model.fabrica.Fabrica;
+import model.util.Excecoes;
 
 public class TelaCadastroAluno extends JFrame {
 
@@ -143,19 +144,18 @@ public class TelaCadastroAluno extends JFrame {
         	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Aluno novoAluno = Fabrica.getAluno(txtNome.getText(), 12+cbIdade.getSelectedIndex(), 
-		        	    txtMatricula.getText(), (rbMasculino.isSelected()) ? "Masculino" : "Feminino", 
-		        	    Double.parseDouble(txtPeso.getText()) , Double.parseDouble(txtAltura.getText()), 
-		        	    txtLimitacoes.getText());
 				
-				instrutorLogado.addAlunoInstrutor(novoAluno);
-				instrutorController.atualizarDados(instrutorLogado);
-				new TelaMenu(instrutorLogado, instrutorController).setVisible(true);
-				dispose();
+				cadastrarAluno(txtNome.getText().trim(), 12+cbIdade.getSelectedIndex(), 
+			             txtMatricula.getText().trim(), (rbMasculino.isSelected()) ? "Masculino" : "Feminino", 
+			             Double.parseDouble(txtPeso.getText().trim()) , Double.parseDouble(txtAltura.getText().trim()), 
+			             txtLimitacoes.getText().trim());
 			}
         });
+        
         gbc.gridy++;
         painelPrincipal.add(btnCadastrar, gbc);
+        
+        
         
         JButton btnVoltar = new JButton("Voltar");
         btnVoltar.setBackground(new Color(18,167,60));
@@ -179,6 +179,37 @@ public class TelaCadastroAluno extends JFrame {
         painelPrincipal.add(btnVoltar, gbc);
 
         painelPrincipal.add(Box.createVerticalStrut(10), gbc);
+    }
+    
+    private void cadastrarAluno (String nome, int idade, String matricula, String sexo, double peso, 
+        double altura, String limitacoes) {
+    	
+    	try {
+       	 
+    		if (matricula.isEmpty() && nome.isEmpty() && limitacoes.isEmpty()) { 
+        	throw new Excecoes("Preencha todos os campos!");
+    		}
+        
+    		if(matricula.isEmpty()){ 
+         	throw new Excecoes("Digite a Matricula!");
+    		}
+    	 
+    		if (nome.isEmpty()) { 
+    		 throw new Excecoes("Insira o nome!");
+    		}
+    	 
+    		Aluno novoAluno = Fabrica.getAluno(nome, idade, matricula, sexo, peso, altura, limitacoes);
+
+        	instrutorLogado.addAlunoInstrutor(novoAluno);
+        	instrutorController.atualizarDados(instrutorLogado);
+        	new TelaMenu(instrutorLogado, instrutorController).setVisible(true);
+        	dispose();	
+    	
+    	}catch(Excecoes e){
+    	 JOptionPane.showMessageDialog(TelaCadastroAluno.this, e.getMessage(), "Algo deu Errado... :(",JOptionPane.ERROR_MESSAGE);
+    	 return;
+    	 }
+    	
     }
 }
 

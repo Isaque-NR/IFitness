@@ -2,6 +2,7 @@ package model.entities;
 
 import java.io.Serializable;
 
+import model.util.Excecoes;
 import model.util.Validadores;
 
 public class Exercicio implements Serializable  {
@@ -18,7 +19,7 @@ public class Exercicio implements Serializable  {
 	private String intensidade; // leve,moderado,itenso
 	
 	// Construtor Exercicos de Musculação
-	public Exercicio(String nome, double carga, int repeticoes, int series) {
+	public Exercicio(String nome, double carga, int repeticoes, int series) throws Excecoes {
 		if(Validadores.isExercicioMusculacaoValid(nome, carga, repeticoes, series)) {
 		this.nome=nome;
 		this.carga=carga;
@@ -27,13 +28,13 @@ public class Exercicio implements Serializable  {
 		this.duracao=0;
 		this.intensidade = "N/A";
 		}else {
-			System.out.println("Exercicio Invalido");
+			throw new Excecoes ("Exercício inválido");
 		}
 	}
 	
 	// Construtor Exercicios Cardio
 	
-	public Exercicio (String nome, int duracao, String intensidade) {
+	public Exercicio (String nome, int duracao, String intensidade) throws Excecoes {
 		if(Validadores.isExercicioCardioValid(nome, duracao, intensidade)) {
 		this.nome=nome;
 		this.carga=0;
@@ -42,7 +43,7 @@ public class Exercicio implements Serializable  {
 		this.duracao=duracao;
 		this.intensidade=intensidade;
 		}else {
-			System.out.println("Exercicio Invalido");
+			throw new Excecoes ("Exercício inválido");
 		}
 	}
 

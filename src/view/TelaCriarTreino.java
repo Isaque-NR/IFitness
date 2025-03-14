@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import controller.InstrutorController;
 import model.fabrica.Fabrica;
+import model.util.Excecoes;
 import model.entities.Instrutor;
 import model.entities.Aluno;
 import model.entities.Exercicio;
@@ -198,7 +199,7 @@ public class TelaCriarTreino extends JFrame {
         btnNovoExercicio.addActionListener(new ActionListener () {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				if (tfNomeTreino.getText().isEmpty() || cbAlunos.getSelectedItem() == null) {
 		            JOptionPane.showMessageDialog(TelaCriarTreino.this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
 		            return;
@@ -348,34 +349,39 @@ public class TelaCriarTreino extends JFrame {
 
     private void adicionarExercicio() {
  
-        boolean isMusc = rbMusculacao.isSelected();
+    	try {
+    			boolean isMusc = rbMusculacao.isSelected();
         
 
-        if (isMusc) {
-            // Musculação
-            String nome = tfNomeExercicioMusc.getText().trim();
-            double carga = Double.parseDouble(tfCarga.getText().trim());
-            int repet = Integer.parseInt(tfRepeticoes.getText().trim());
-            int series = Integer.parseInt(tfSeries.getText().trim());
+    			if (isMusc) {
+    				// Musculação
+    				String nome = tfNomeExercicioMusc.getText().trim();
+    				double carga = Double.parseDouble(tfCarga.getText().trim());
+    				int repet = Integer.parseInt(tfRepeticoes.getText().trim());
+    				int series = Integer.parseInt(tfSeries.getText().trim());
             
-            listaExercicios.add(Fabrica.getExercicioMusculacao(nome, carga, repet, series));
+    				listaExercicios.add(Fabrica.getExercicioMusculacao(nome, carga, repet, series));
             
-        } else {
-            String nome = tfNomeExercicioCardio.getText().trim();
-            int duracao = Integer.parseInt(tfDuracao.getText().trim());
-            String intensidade = tfIntensidade.getText().trim();
+    			} else {
+    				String nome = tfNomeExercicioCardio.getText().trim();
+    				int duracao = Integer.parseInt(tfDuracao.getText().trim());
+    				String intensidade = tfIntensidade.getText().trim();
            
-            listaExercicios.add(Fabrica.getExercicioCardio(nome, duracao, intensidade));
-        }
+    				listaExercicios.add(Fabrica.getExercicioCardio(nome, duracao, intensidade));
+    			}
          
-        atualizarTextArea(listaExercicios);
-        tfNomeExercicioMusc.setText("");
-        tfCarga.setText("");
-        tfRepeticoes.setText("");
-        tfSeries.setText("");
-        tfNomeExercicioCardio.setText("");
-        tfDuracao.setText("");
-        tfIntensidade.setText("");
+    			atualizarTextArea(listaExercicios);
+    			tfNomeExercicioMusc.setText("");
+    			tfCarga.setText("");
+    			tfRepeticoes.setText("");
+    			tfSeries.setText("");
+    			tfNomeExercicioCardio.setText("");
+    			tfDuracao.setText("");
+    			tfIntensidade.setText("");
+    	} catch (Excecoes e) {
+    		JOptionPane.showMessageDialog(TelaCriarTreino.this, e.getMessage(), "Algo deu Errado... :(",JOptionPane.ERROR_MESSAGE);
+       	 	return;
+    	  }
     }
 
     private void atualizarTextArea(List <Exercicio> listaExercicios) {
@@ -386,19 +392,23 @@ public class TelaCriarTreino extends JFrame {
     }
 
     private void finalizarTreino() {
+    	try {
+    			if (listaExercicios.isEmpty()) {
+    				JOptionPane.showMessageDialog(this, "Adicione ao menos um exercício!", "Erro", JOptionPane.ERROR_MESSAGE);
+    				return;
+    			}
     	
-    	if (listaExercicios.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Adicione ao menos um exercício!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    			Aluno aluno = (Aluno) cbAlunos.getSelectedItem();
+    			instrutorLogado.associarTreino(aluno, instrutorController.CriarTreino(tfNomeTreino.getText(), 
+    			listaExercicios));
     	
-    	Aluno aluno = (Aluno) cbAlunos.getSelectedItem();
-    	instrutorLogado.associarTreino(aluno, instrutorController.CriarTreino(tfNomeTreino.getText(), 
-    			                       listaExercicios));
-    	
-        instrutorController.atualizarDados(instrutorLogado);
-        new TelaMenu(instrutorLogado, instrutorController).setVisible(true);     
-        dispose(); 
+    			instrutorController.atualizarDados(instrutorLogado);
+    			new TelaMenu(instrutorLogado, instrutorController).setVisible(true);     
+    			dispose(); 
+    	} catch (Excecoes e){
+    		JOptionPane.showMessageDialog(TelaCriarTreino.this, e.getMessage(), "Algo deu Errado... :(",JOptionPane.ERROR_MESSAGE);
+          	return;
+    	  }
     }
     
 }

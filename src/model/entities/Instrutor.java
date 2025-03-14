@@ -6,6 +6,7 @@ import model.util.Validadores;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import model.util.Excecoes;
 
 public class Instrutor extends Usuario implements Serializable {
 	
@@ -17,13 +18,13 @@ public class Instrutor extends Usuario implements Serializable {
 	private List<Aluno> alunos;
 
 	
-	public Instrutor(String nome, int idade, String matricula, String senha) {
+	public Instrutor(String nome, int idade, String matricula, String senha) throws Excecoes {
 		super(nome,idade,matricula);
 		if(Validadores.isSenhaValid(senha)) {
 		this.senha=senha;
 		this.alunos=new ArrayList<>();
 		}else {
-		     System.out.println("Instrutor Invalido");
+		     throw new Excecoes ("Instrutor inválido");
 		}
 	}
 

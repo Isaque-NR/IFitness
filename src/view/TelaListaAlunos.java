@@ -15,7 +15,7 @@ import java.util.List;
 import model.entities.Aluno;
 import model.entities.Instrutor;
 
-public class TelaListaAlunos extends JFrame {
+public class TelaListaAlunos extends JFrame implements ViewDadosAluno {
 
     private static final long serialVersionUID = 1L;
     private JTable tabelaAlunos;
@@ -27,13 +27,14 @@ public class TelaListaAlunos extends JFrame {
         super("IFitness");
         this.instrutorLogado = instrutorLogado;
         this.instrutorController = instrutorController;
-        inicializarComponentes();
+        VisualizarDados();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-    private void inicializarComponentes() {
+    
+    @Override
+    public void VisualizarDados() {
 
         JPanel painelPrincipal = new JPanel(new GridBagLayout());
         painelPrincipal.setBackground(Color.GRAY);

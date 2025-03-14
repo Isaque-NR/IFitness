@@ -3,6 +3,8 @@ package controller;
 
 import model.entities.Instrutor;
 import model.fabrica.Fabrica;
+import model.util.Excecoes;
+
 import java.util.List;
 
 import model.dao.InstrutorDAO;
@@ -21,10 +23,10 @@ public class InstrutorController {
         return instrutorDAO.validarCredenciais(matricula, senha);
     }
     
-    public Treinos CriarTreino (String nome, List<Exercicio> exercicios) {
+    public Treinos CriarTreino (String nome, List<Exercicio> exercicios) throws Excecoes {
     	return Fabrica.getTreino(nome, exercicios);
     }
-    public boolean cadastrarInstrutor(String nome, int idade, String matricula, String senha) {
+    public boolean cadastrarInstrutor(String nome, int idade, String matricula, String senha) throws Excecoes {
         Instrutor novoInstrutor = Fabrica.getInstrutor(nome, idade, matricula, senha);
         return instrutorDAO.cadastrarInstrutor(novoInstrutor);
     }

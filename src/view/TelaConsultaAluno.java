@@ -9,7 +9,7 @@ import model.entities.Instrutor;
 import model.entities.Aluno;
 import model.entities.Treinos;
 
-public class TelaConsultaAluno extends JFrame {
+public class TelaConsultaAluno extends JFrame implements ViewDadosAluno {
 
     private static final long serialVersionUID = 1L;
     private JPanel panelDados;
@@ -21,13 +21,13 @@ public class TelaConsultaAluno extends JFrame {
         super("IFitness");
         this.instrutorLogado = instrutorLogado;
         this.instrutorController = instrutorController;
-        inicializarComponentes();
+        VisualizarDados();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    private void inicializarComponentes() {
+    public void VisualizarDados() {
  
         JPanel painelPrincipal = new JPanel(new GridBagLayout());
         painelPrincipal.setBackground(Color.GRAY);
@@ -124,7 +124,6 @@ public class TelaConsultaAluno extends JFrame {
         });
     }
     
-    // Simula a consulta do aluno e atualiza o painel de dados
     private void buscarAluno(String matriculaConsulta) {
         if(matriculaConsulta.isEmpty()){
             JOptionPane.showMessageDialog(this, "Por favor, insira uma "
@@ -149,56 +148,56 @@ public class TelaConsultaAluno extends JFrame {
 
         int linha = 0;
         
-        // Nome
+        
         panelDados.add(new JLabel("Nome:"), gbcDados);
         gbcDados.gridx = 1;
         panelDados.add(new JLabel(alunoBuscado.getNome()), gbcDados);
         gbcDados.gridx = 0;
         gbcDados.gridy= ++linha;
         
-        // Idade
+   
         panelDados.add(new JLabel("Idade:"), gbcDados);
         gbcDados.gridx = 1;
         panelDados.add(new JLabel(String.valueOf(alunoBuscado.getIdade())), gbcDados);
         gbcDados.gridx = 0;
         gbcDados.gridy= ++linha;
         
-        // Sexo
+        
         panelDados.add(new JLabel("Sexo:"), gbcDados);
         gbcDados.gridx = 1;
         panelDados.add(new JLabel(alunoBuscado.getSexo()), gbcDados);
         gbcDados.gridx = 0;
        	gbcDados.gridy= ++linha;
         
-        // Matrícula
+        
         panelDados.add(new JLabel("Matrícula:"), gbcDados);
         gbcDados.gridx = 1;
         panelDados.add(new JLabel(alunoBuscado.getMatricula()), gbcDados);
         gbcDados.gridx = 0;
         gbcDados.gridy= ++linha;
         
-        // Peso
+        
         panelDados.add(new JLabel("Peso:"), gbcDados);
         gbcDados.gridx = 1;
         panelDados.add(new JLabel(String.valueOf(alunoBuscado.getPeso())), gbcDados);
         gbcDados.gridx = 0;
         gbcDados.gridy= ++linha;;
         
-        // Altura
+        
         panelDados.add(new JLabel("Altura:"), gbcDados);
         gbcDados.gridx = 1;
         panelDados.add(new JLabel(String.valueOf(alunoBuscado.getAltura())), gbcDados);
         gbcDados.gridx = 0;
         gbcDados.gridy= ++linha;
         
-        // Limitações
+        
         panelDados.add(new JLabel("Limitações:"), gbcDados);
         gbcDados.gridx = 1;
         panelDados.add(new JLabel(alunoBuscado.getLimitacoesFisicasOuSaude()), gbcDados);
         gbcDados.gridx = 0;
         gbcDados.gridy= ++linha;
         
-        // Treinos
+        
         gbcDados.gridwidth = 2;
         panelDados.add(new JLabel("Treinos:"), gbcDados);
         gbcDados.gridy= ++linha;

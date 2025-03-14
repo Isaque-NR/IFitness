@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import controller.InstrutorController;
+import model.util.Excecoes;
 
 public class TelaCadastroInstrutor extends JFrame {
 
@@ -156,20 +157,8 @@ public class TelaCadastroInstrutor extends JFrame {
             
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String nome = txtNome.getText().trim();
-	            String matricula = txtMatricula.getText().trim();
-	            String senha = new String(txtSenha.getPassword()).trim();
-	            int idade = (int) cbIdade.getSelectedItem();
-
-	            boolean sucesso = instrutorController.cadastrarInstrutor(nome, idade, matricula, senha);
-
-	            if (sucesso) {
-	                JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-	                new TelaLogin(instrutorController).setVisible(true);
-	                dispose();
-	            } else {
-	                JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, "Matrícula já cadastrada!", "Erro", JOptionPane.ERROR_MESSAGE);
-	            }
+				tentarCadastro(txtNome.getText().trim(), txtMatricula.getText().trim(), 
+				new String (txtSenha.getPassword()).trim(), (int) cbIdade.getSelectedItem());
 				
 			}
         });
@@ -180,7 +169,43 @@ public class TelaCadastroInstrutor extends JFrame {
 
         return painelCadastro;
     }
+    
+    private void tentarCadastro(String nome, String matricula, String senha, int idade) {
+        
+    	try {
+       	 
+    			if (matricula.isEmpty() && senha.isEmpty() && nome.isEmpty()) { 
+    				throw new Excecoes("Preencha todos os campos!");
+    			}
+        
+    			if(matricula.isEmpty()){ 
+    				throw new Excecoes("Digite a matricula!");
+    			}
+    	 
+    			if (senha.isEmpty()) { 
+    				throw new Excecoes("Insira a senha!");
+    			}
+    		
+    			if(nome.isEmpty()){ 
+    				throw new Excecoes("Digite o nome!");
+        		}
+    	
+    			boolean sucesso = instrutorController.cadastrarInstrutor(nome, idade, matricula, senha);
 
+    			if (sucesso) {
+    				JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    				new TelaLogin(instrutorController).setVisible(true);
+    				dispose();
+    			} else {
+    				JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, "Matrícula já cadastrada!", "Erro", JOptionPane.ERROR_MESSAGE);
+    				}
+    		} catch(Excecoes e){
+    			JOptionPane.showMessageDialog(TelaCadastroInstrutor.this, e.getMessage(), "Algo deu Errado... :(",JOptionPane.ERROR_MESSAGE);
+    			return;
+       	 		}
+    }
+    
+    
     private JPanel criarPainelImagem() {
         JPanel painelImagem = new JPanel(new BorderLayout());
         painelImagem.setBackground(Color.WHITE);

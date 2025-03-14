@@ -2,6 +2,7 @@ package model.entities;
 
 import java.util.List;
 
+import model.util.Excecoes;
 import model.util.Validadores;
 
 import java.io.Serializable;
@@ -16,12 +17,12 @@ public class Treinos implements Serializable {
 	private String nome;
 	private List<Exercicio> exercicios;
 	
-	public Treinos(String nome, List<Exercicio> exercicios) {
+	public Treinos(String nome, List<Exercicio> exercicios) throws Excecoes {
 		if(Validadores.isNomeTreinoValid(nome)) {
 		this.nome=nome;
 		this.exercicios=exercicios;
 		}else {
-			System.out.println("Treino Invalido");
+			throw new Excecoes ("Treino inválido");
 		}
 	}
 
@@ -32,8 +33,6 @@ public class Treinos implements Serializable {
 	public void setNome(String nome) {
 		if(Validadores.isNomeTreinoValid(nome)) {
 		this.nome = nome;
-		}else {
-			System.out.println("Insira um nome válido!");
 		}
 	}
 

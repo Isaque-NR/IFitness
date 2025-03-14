@@ -107,11 +107,8 @@ public class TelaLogin extends JFrame {
         gbc.gridy++;
         btnLogin.addActionListener(new ActionListener () {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				String matricula = txtMatricula.getText().trim();
-		        String senha = new String(txtSenha.getPassword()).trim();
-				tentarLogin(matricula,senha);
-				
+			public void actionPerformed(ActionEvent e) {				
+				tentarLogin(txtMatricula.getText().trim(),new String(txtSenha.getPassword()).trim());				
 			}
 
         });
@@ -142,38 +139,37 @@ public class TelaLogin extends JFrame {
         
     }
     
-    private void tentarLogin(String matricula,String senha){
-     try {
-    	//String matricula = txtMatricula.getText().trim();
-       //String senha = new String(txtSenha.getPassword()).trim();
+    private void tentarLogin(String matricula,String senha) {
+     
+    	try {
     	 
-        if (matricula.isEmpty() && senha.isEmpty()) { // OK
+    		if (matricula.isEmpty() && senha.isEmpty()) { 
         	throw new Excecoes("Preencha todos os campos!");
-            //JOptionPane.showMessageDialog(TelaLogin.this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-            //return;
-        }
-        if(matricula.isEmpty()){ // OK
+    		}
+        
+    		if(matricula.isEmpty()){ 
          	throw new Excecoes("Digite a Matricula!");
-         }
+    		}
     	 
-    	 if (senha.isEmpty()) { // OK
+    		if (senha.isEmpty()) { 
     		 throw new Excecoes("Insira a senha!");
-    	 }
-        Instrutor instrutorLogado = instrutorController.autenticarInstrutor(matricula, senha);
+    		}
+    	 
+    		Instrutor instrutorLogado = instrutorController.autenticarInstrutor(matricula, senha);
   
-        if (instrutorLogado != null) { 
+    		if (instrutorLogado != null) { 
             JOptionPane.showMessageDialog(TelaLogin.this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
             new TelaMenu(instrutorLogado,instrutorController).setVisible(true); // Abre a tela do menu com o instrutor logado
             dispose(); // Fecha a tela de login
             
-        } else { // NAO FUNCIONO A EXCECAO
-        	System.out.println("teste");
+    		} else {        	
         	throw new Excecoes("Instrutor não Cadastrado!");
-            ///JOptionPane.showMessageDialog(TelaLogin.this, "Matrícula ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
-        }	
-     }catch(Excecoes e){
+    		}	
+    	
+    	}catch(Excecoes e){
     	 JOptionPane.showMessageDialog(TelaLogin.this, e.getMessage(), "Algo deu Errado... :(",JOptionPane.ERROR_MESSAGE);
-     }
+    	 return;
+    	 }
     }
     
     

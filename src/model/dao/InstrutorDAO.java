@@ -1,6 +1,5 @@
 package model.dao;
 
-import model.entities.Aluno;
 import model.entities.Instrutor;
 import java.util.ArrayList;
 import java.util.Iterator;
