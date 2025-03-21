@@ -46,12 +46,11 @@ public class InstrutorDAO {
         while (iterator.hasNext()) {
             Instrutor i = iterator.next();
             if (i.getMatricula().equals(instrutorLogado.getMatricula())) {
-                iterator.remove(); // ✅ Removendo de forma segura
-                break; // 🔹 Sai do loop após encontrar o instrutor
+                iterator.remove(); 
+                break; 
             }
         }
         
-        // Agora podemos adicionar o novo instrutor atualizado
         instrutores.add(instrutorLogado);
         Persistencia.salvarDados(instrutores, ARQUIVO);
     }
